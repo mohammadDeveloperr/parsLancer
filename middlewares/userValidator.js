@@ -3,12 +3,14 @@ const ajv = new Ajv({ allErrors: true });
 require("ajv-formats")(ajv)
 require("ajv-errors")(ajv);
 
-const schema=require('../models/schemas/userSchema')
+const schemas=require('../models/schemas/userSchema')
 
 
 
-const registerValidator = async (req, res, next) => {
+const userValidator = async (req, res, next) => {
   try {
+    console.log(req.originalUrl)
+    schema=req.originalUrl=='/users/register'?schemas.registerSchema:schemas.loginSchema;
     const validate = ajv.compile(schema);
     const valid = validate(req.body);
     console.log(valid);
@@ -23,4 +25,4 @@ const registerValidator = async (req, res, next) => {
   }
 };
 
-module.exports = { registerValidator };
+module.exports =  userValidator ;

@@ -1,5 +1,5 @@
 const logger = require("../utils/logger");
-exports.errorHandler = (error, req, res, next) => {
+const errorHandler = (error, req, res, next) => {
   if (isValidationError(error)) {
     const readableError = generateValidationError(error);
     logger.error(error);
@@ -29,3 +29,4 @@ function generateValidationError(error) {
     statusCode: 400,
   };
 }
+module.exports=errorHandler;

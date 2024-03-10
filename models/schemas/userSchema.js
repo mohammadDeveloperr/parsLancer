@@ -1,4 +1,4 @@
-const schema = {
+const registerSchema = {
   type: "object",
   properties: {
     first_name: { type: "string" },
@@ -26,4 +26,24 @@ const schema = {
   },
 };
 
-module.exports = schema;
+const loginSchema={
+  type: "object",
+  properties: {
+    username: { type: "string" },
+    password:{type:"string",minLength:4}
+  },
+  required: ["username","password"],
+  additionalProperties: false,
+  errorMessage: {
+    type: "should be an object",
+    required: {
+      username: "لطفا نام کاربری خود را وارد کنید",
+      password:"لطفا رمز ورود خود را وارد کنید"
+    },
+    properties: {
+      password: "پسورد شما باید از ۴ کاراکتر بیشتر باشد",
+    },
+  },
+}
+
+module.exports = {registerSchema,loginSchema};
