@@ -11,4 +11,5 @@ const userController=require('../controllers/userController');
 router.post('/login',checkAccess,userValidator,userController.login)
 router.post('/register',userValidator,userController.register)
 
+router.get("/",userController.getUser);
 module.exports = router

@@ -1,11 +1,12 @@
 const User = require("../models/users");
 const bcrypt = require("bcryptjs");
-const jwt = require('jsonwebtoken');
-const { checkDbForLogin } = require("../helpers/login.helper");
-const shared=require('../utils/shared')
+const jwt = require("jsonwebtoken");
+const { checkDbForLogin, getUser } = require("../helpers/login.helper");
+const shared = require("../utils/shared");
 module.exports.login = async (req, res, next) => {
   try {
-    const { username, password ,email,first_name,last_name,number} = req.body;
+    const { username, password, email, first_name, last_name, number } =
+      req.body;
 
     const user = await checkDbForLogin(username, password);
     const isEqual = await bcrypt.compare(password, user.password);
@@ -14,19 +15,26 @@ module.exports.login = async (req, res, next) => {
       throw "نام کابری یا رمز عبور اشتباه میباشد";
     }
 
-    const token = jwt.sign({
+    const token = jwt.sign(
+      {
         user: {
-            id: user._id,
-            username:user.username,
-            email: user.email,
-            first_name: user.first_name,
-        }
-    }, process.env.JWT_SECRET)
+          id: user._id,
+          username: user.username,
+          email: user.email,
+          first_name: user.first_name,
+        },
+      },
+      process.env.JWT_SECRET
+    );
 
-    console.log(user)
-    console.log(token)
-    await shared.redisModel.set(token,{username, password ,email,first_name,last_name,number},process.env.user_expire_time)
-    res.status(200).json({ token});
+    console.log(user);
+    console.log(token);
+    await shared.redisModel.set(
+      token,
+      { username, password, email, first_name, last_name, number },
+      process.env.user_expire_time
+    );
+    res.status(200).json({ token });
   } catch (err) {
     console.log(err);
     next({ message: "ثبت نام کاربر به مشکل خورده است", data: err });
@@ -44,5 +52,15 @@ module.exports.register = async (req, res, next) => {
   } catch (err) {
     console.log(err);
     next({ message: "ثبت نام کاربر به مشکل خورده است", data: err });
+  }
+};
+
+module.exports.getUser = async (req, res, next) => {
+  try {
+    const { username } = req.query;
+    const users = await getUser(username);
+    res.status(200).json({users});
+  } catch (err) {
+    next({ message: "پیدا کردن کاربر با مشکل مواجه شد", data: err });
   }
 };
