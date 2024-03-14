@@ -1,7 +1,7 @@
 const User = require("../models/users");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { checkDbForLogin, getUser } = require("../helpers/login.helper");
+const { checkDbForLogin, getUser ,updateUser,updatePassword,getPassword} = require("../helpers/login.helper");
 const shared = require("../utils/shared");
 module.exports.login = async (req, res, next) => {
   try {
@@ -64,3 +64,40 @@ module.exports.getUser = async (req, res, next) => {
     next({ message: "پیدا کردن کاربر با مشکل مواجه شد", data: err });
   }
 };
+
+module.exports.updateUser=async (req,res,next)=>{
+  try {
+    const {username}=req.params;
+    const newUser=req.body;
+
+    const result=await updateUser(username,newUser)
+    console.log(result);
+    res.status(200).json({message:`کاربر ${username} با موفقیت اپدیت شد`});
+
+  } catch (err) {
+    next({ message: "پیدا کردن کاربر با مشکل مواجه شد", data: err });
+  }
+}
+
+module.exports.updatePassword=async (req,res,next)=>{
+  try {
+    const { token } = req.headers;
+    let {oldPassword,newPassword}=req.body;
+    newPassword=await bcrypt.hash(newPassword, 8);
+    const user =  await shared.redisModel.get(token);
+    const password=await getPassword(user.username);
+    const isEqual = await bcrypt.compare(oldPassword, password);
+
+    if(!isEqual){
+      throw {statusCode:401,message:"پسورد وارد اشتباه میباشد ",data:"wrong password"};
+    }
+    const result=await updatePassword(user.username,newPassword)
+    console.log(result)
+    res.status(200).json({message:"پسورد شما با موفقیت تغییر کرد"});
+
+
+  } catch (err) {
+    next({statusCode:err.statusCode||null, message: err.message ||"پسورد شما اپدیت نشد", data: err.data || err });
+
+  }
+}

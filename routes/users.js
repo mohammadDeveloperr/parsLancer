@@ -8,8 +8,11 @@ const userController=require('../controllers/userController');
   console.log('Time: ', Date.now())
   next()
 })*/
-router.post('/login',checkAccess,userValidator,userController.login)
+router.post('/login',
+//checkAccess,
+userValidator,userController.login)
 router.post('/register',userValidator,userController.register)
-
 router.get("/",userController.getUser);
+router.put("/:username",userController.updateUser)
+router.patch("/",userController.updatePassword)
 module.exports = router

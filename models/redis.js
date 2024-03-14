@@ -6,11 +6,20 @@ class RedisModel {
   }
 
   async set(key, value,expire=null) {
-    expire? await this.redis.set(key, value): await this.redis.set(key, value,"EX",expire);
+    try {
+      console.log(value)
+      value=JSON.stringify(value)
+      expire? await this.redis.set(key, value): await this.redis.set(key, value,"EX",expire);
+      
+    } catch (err) {
+      throw err;  
+    }
   }
 
   async get(key) {
-    return await this.redis.get(key);
+    let result=await this.redis.get(key);
+    result=JSON.parse(result)
+    return result;
   }
 
   async delete(key) {
