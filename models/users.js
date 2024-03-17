@@ -17,20 +17,31 @@ const User = sequelize.define("user", {
     allowNull: true,
   },
   username: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING,
     allowNull: false,
+    unique: true
   },
   password:{
     type: DataTypes.TEXT,
     allowNull: false,
   },
   number: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING,
     allowNull: false,
+    unique: true
   },
   email: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING,
     allowNull: false,
+    unique: true
+  },
+  role:{
+    type:DataTypes.TEXT,
+    defaultValue:"user"
+  },
+  about_me: {
+    type: DataTypes.TEXT,
+    allowNull: true,
   }
 });;
 module.exports=User

@@ -9,7 +9,7 @@ const errorHandler = (error, req, res, next) => {
     const message = error.message;
     const data = error.data || "internal error";
     logger.error({ message, data, statusCode });
-    res.status(statusCode).json({ message, data, statusCode });
+    res.status(statusCode).json({ message, statusCode });
   }
 };
 

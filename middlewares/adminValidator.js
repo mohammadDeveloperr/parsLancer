@@ -3,19 +3,16 @@ const ajv = new Ajv({ allErrors: true });
 require("ajv-formats")(ajv)
 require("ajv-errors")(ajv);
 
-const schemas=require('../models/schemas/userSchema')
+const schemas=require('../models/schemas/adminSchema')
 
 
 
-const userValidator = async (req, res, next) => {
+const adminValidator = async (req, res, next) => {
   try {
-    let url=req.originalUrl
+    let url=req.originalUrl.substring(0, req.originalUrl.indexOf("?"));
     let method=req.method
     let schema;
-    if(url=='/users/register') schema=schemas.registerSchema
-    else if(url=='/users/login')schema=schemas.loginSchema
-    else if(url=='/users/' && method=="PUT")schema=schemas.updateUser
-    else if(url=='/users/' && method=="PATCH")schema=schemas.updatePassword
+    if(url=='/admin/users/' && method=="PUT") schema=schemas.updateUser
     const validate = ajv.compile(schema);
     const valid = validate(req.body);
     console.log(valid);
@@ -30,4 +27,4 @@ const userValidator = async (req, res, next) => {
   }
 };
 
-module.exports =  userValidator ;
+module.exports =  adminValidator ;

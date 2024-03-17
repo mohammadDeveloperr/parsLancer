@@ -13,6 +13,6 @@ router.post('/login',
 userValidator,userController.login)
 router.post('/register',userValidator,userController.register)
 router.get("/",userController.getUser);
-router.put("/:username",userController.updateUser)
-router.patch("/",userController.updatePassword)
+router.put("/",userValidator,userController.updateUser)
+router.patch("/",userValidator,userController.updatePassword)
 module.exports = router

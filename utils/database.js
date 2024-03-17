@@ -8,7 +8,7 @@ const sequelize = new Sequelize("parsLancer", "mohammad", "09944985072", {
 
 const connectToDb=async () => {
     try {
-        await sequelize.sync();
+        await sequelize.sync({});
         logger.info("database is connected!")
     } catch (err) {
         throw errorCreator(500,"database can not connect",err)

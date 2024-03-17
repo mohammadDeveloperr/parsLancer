@@ -1,5 +1,7 @@
 const express = require('express')
 const usersRouter=require('./routes/users')
+
+const adminRouter=require('./routes/admin')
 const app = express()
 const errorHandler=require("./middlewares/errors")
 const {connectToDb}=require('./utils/database')
@@ -31,6 +33,7 @@ redis.on("error",(err)=>{
 
 app.use(morganMiddleware);
 app.use('/users', usersRouter)
+app.use('/admin', adminRouter)
 
 
 app.use(errorHandler)

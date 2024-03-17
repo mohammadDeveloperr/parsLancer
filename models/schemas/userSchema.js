@@ -46,4 +46,42 @@ const loginSchema={
   },
 }
 
-module.exports = {registerSchema,loginSchema};
+const updateUser={
+  type: "object",
+  properties: {
+    first_name: { type: "string",minLength:2  },
+    last_name:{type:"string"},
+    about_me:{type:"string"}
+  },
+  required: ["first_name"],
+  additionalProperties: false,
+  errorMessage: {
+    type: "should be an object",
+    required: {
+      first_name: "لطفا نام  خود را وارد کنید",
+    }
+  },
+}
+
+const updatePassword={
+  type: "object",
+  properties: {
+    oldPassword: { type: "string",minLength:4 },
+    newPassword:{type:"string",minLength:4}
+  },
+  required: ["oldPassword","newPassword"],
+  additionalProperties: false,
+  errorMessage: {
+    type: "should be an object",
+    required: {
+      oldPassword: "لطفا رمز عبور فعلی را وارد کنید",
+      newPassword:"لطفا رمز عبور جدید خود را وارد کنید"
+    },
+    properties: {
+      oldPassword: "پسورد شما باید از ۴ کاراکتر بیشتر باشد",
+      newPassword: "پسورد شما باید از ۴ کاراکتر بیشتر باشد",
+    },
+  },
+}
+
+module.exports = {registerSchema,loginSchema,updateUser,updatePassword};

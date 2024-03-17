@@ -1,7 +1,7 @@
 const User = require("../models/users");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { checkDbForLogin, getUser ,updateUser,updatePassword,getPassword} = require("../helpers/login.helper");
+const { checkDbForLogin, getUser ,updateUser,updatePassword,getPassword} = require("../helpers/users.helper");
 const shared = require("../utils/shared");
 module.exports.login = async (req, res, next) => {
   try {
@@ -51,6 +51,9 @@ module.exports.register = async (req, res, next) => {
       .json({ data: `کاربر ${req.body.username} با موفقیت ثبت نام شد` });
   } catch (err) {
     console.log(err);
+    if(err.name="SequelizeUniqueConstraintError")
+    next({ message: "نام کاربری یا ایمیل یا شماره همراه تکراری میباشد", data: err });
+
     next({ message: "ثبت نام کاربر به مشکل خورده است", data: err });
   }
 };
@@ -67,9 +70,9 @@ module.exports.getUser = async (req, res, next) => {
 
 module.exports.updateUser=async (req,res,next)=>{
   try {
-    const {username}=req.params;
-    const newUser=req.body;
-
+    const { token } = req.headers;
+    const newUser={first_name,last_name,}=req.body;
+    const {username} =  await shared.redisModel.get(token);
     const result=await updateUser(username,newUser)
     console.log(result);
     res.status(200).json({message:`کاربر ${username} با موفقیت اپدیت شد`});
@@ -79,11 +82,11 @@ module.exports.updateUser=async (req,res,next)=>{
   }
 }
 
+
 module.exports.updatePassword=async (req,res,next)=>{
   try {
     const { token } = req.headers;
     let {oldPassword,newPassword}=req.body;
-    newPassword=await bcrypt.hash(newPassword, 8);
     const user =  await shared.redisModel.get(token);
     const password=await getPassword(user.username);
     const isEqual = await bcrypt.compare(oldPassword, password);
