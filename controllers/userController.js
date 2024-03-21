@@ -6,7 +6,7 @@ const { checkDbForLogin, getUser ,updateUser,updatePassword,getPassword} = requi
 const shared = require("../utils/shared");
 module.exports.login = async (req, res, next) => {
   try {
-    const { username, password, email, first_name, last_name, number } =
+    const { username, password } =
       req.body;
 
     const user = await checkDbForLogin(username, password);
@@ -28,11 +28,12 @@ module.exports.login = async (req, res, next) => {
       process.env.JWT_SECRET
     );
 
+    const {email,number,role,first_name,last_name}=user;
     console.log(user);
     console.log(token);
     await shared.redisModel.set(
       token,
-      { username, password, email, first_name, last_name, number },
+      { username, password, email, first_name, last_name, number,role },
       process.env.user_expire_time
     );
     res.status(200).json({ token });

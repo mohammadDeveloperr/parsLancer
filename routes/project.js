@@ -1,13 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const adminValidator=require('../middlewares/adminValidator')
+const projectValidator=require('../middlewares/projectValidator')
 const checkAccess=require('../middlewares/checkAccess')
 const projectController=require('../controllers/projectController');
 
 router.get("/",projectController.getProject);
-router.post("/",projectController.addProject)
-router.put("/:id",projectController.updateProject)
-router.delete("/:id",projectController.deleteProject)
+router.post("/",checkAccess,projectValidator,projectController.addProject)
+router.put("/",checkAccess,projectValidator,projectController.updateProject)
+router.delete("/",checkAccess,projectController.deleteProject)
 
 
 module.exports = router

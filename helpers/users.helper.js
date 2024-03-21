@@ -10,7 +10,7 @@ module.exports.checkDbForLogin = async (username, password) => {
     if (!user) {
       throw "نام کاربری یا رمز عبور اشتباه میباشد ";
     }
-    return user;
+    return user.dataValues;
   } catch (err) {
     throw err;
   }

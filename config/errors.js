@@ -1,0 +1,1 @@
+module.exports.accessDenyError={statusCode:403,message:"access denied this user",data:"access denied"}
