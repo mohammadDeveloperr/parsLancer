@@ -37,7 +37,7 @@ const User = sequelize.define("user", {
   },
   role:{
     type:DataTypes.TEXT,
-    defaultValue:"user"
+    defaultValue:"admin"
   },
   about_me: {
     type: DataTypes.TEXT,

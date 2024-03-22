@@ -9,5 +9,9 @@ router.post("/",checkAccess,projectValidator,projectController.addProject)
 router.put("/",checkAccess,projectValidator,projectController.updateProject)
 router.delete("/",checkAccess,projectController.deleteProject)
 
+router.patch("/done/freelancer",checkAccess,projectController.freelancerStatus)
+
+router.patch("/done/employer",checkAccess,projectController.employerStatus)
+
 
 module.exports = router

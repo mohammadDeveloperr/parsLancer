@@ -8,12 +8,10 @@ module.exports = async (req, res, next) => {
   if (user && url =="/users/login" || url=="/users/register") {
     next(errors.accessDenyError) ;
   }
-  if(!user && url=="/project" )
+  if(!user && (url=="/project/" || url=="/project/done/freelancer" || url=="/project/done/employer") )
   {
     next(errors.accessDenyError) ;
   }
   req.user=user
-  console.log(req.user)
   next();
-  console.log(req);
 };

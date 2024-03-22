@@ -57,3 +57,15 @@ module.exports.deleteProject=async (id)=>{
         throw err;
     }
 }
+
+module.exports.projectIsFound = async (id) => {
+  try {
+    const project = await Project.findOne({ id });
+    if (!project) {
+      throw "project not found";
+    }
+    return project.dataValues;
+  } catch (err) {
+    throw err;
+  }
+};

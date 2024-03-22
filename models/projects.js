@@ -33,6 +33,21 @@ const Project = sequelize.define("project", {
   employer_username:{
     type:DataTypes.TEXT,
     allowNull: false,
-  }
+  },
+  freelancer_username:{
+    type:DataTypes.TEXT,
+    allowNull: true,
+  },
+  employer_done:{
+    type:DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue:0
+  },
+  freelancer_done:{
+    type:DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue:0
+
+  },
 });;
 module.exports=Project

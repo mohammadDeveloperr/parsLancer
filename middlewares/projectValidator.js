@@ -12,7 +12,7 @@ const projectValidator = async (req, res, next) => {
     let url=req.originalUrl
     let method=req.method
     let schema=""
-    if(url=='/project' && (method=="POST" || method=="PUT")) schema=schemas.addProjectSchema
+    if(url=='/project/' && (method=="POST" || method=="PUT")) schema=schemas.addProjectSchema
     const validate = ajv.compile(schema);
     const valid = validate(req.body);
     console.log(valid);
