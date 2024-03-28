@@ -3,6 +3,8 @@ const usersRouter=require('./routes/users')
 
 const adminRouter=require('./routes/admin')
 const projectRouter=require('./routes/project')
+const suggestionRouter=require('./routes/suggestion')
+
 const app = express()
 const errorHandler=require("./middlewares/errors")
 const {connectToDb}=require('./utils/database')
@@ -36,6 +38,7 @@ app.use(morganMiddleware);
 app.use('/users', usersRouter)
 app.use('/admin', adminRouter)
 app.use('/project', projectRouter)
+app.use('/suggest', suggestionRouter)
 
 
 app.use(errorHandler)

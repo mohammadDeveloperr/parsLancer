@@ -1,4 +1,6 @@
 const Project = require("../models/projects");
+const Message=require("../models/message")
+const Suggestion=require("../models/suggestion")
 const helper = require("../helpers/projects.helper");
 const errors = require("../config/errors");
 
@@ -38,10 +40,9 @@ module.exports.updateProject = async (req, res, next) => {
       throw "project not found";
     }
     if (
-      project[0].employer_username !== req.user.username &&
-      req.user.role != "admin"
-    ) {
-      throw "access denied";
+      project[0].employer_username !== req.user.username &&req.user.role != "admin") { 
+        //!TODO : توی ارور ها یک ارور مخصوص این درست کردم وقت کردی اون رو بزار برای قانون dry
+        throw "access denied";
     }
 
     const newProject = req.body;

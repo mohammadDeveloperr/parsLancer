@@ -1,9 +1,14 @@
 const shared = require("../utils/shared");
 const errors=require("../config/errors")
 module.exports = async (req, res, next) => {
+  const url1=req.baseUrl;
+  const url2=req.path;
+  console.log(url1)
+  console.log(url2)
   const { token } = req.headers;
   const user = await shared.redisModel.get(token);
-  let url=req.originalUrl.substring(0, req.originalUrl.indexOf("?")) || req.originalUrl;
+  //let url=req.originalUrl.substring(0, req.originalUrl.indexOf("?")) || req.originalUrl;
+  const url=`${req.baseUrl}/`
   req.originalUrl=url
   if (user && url =="/users/login" || url=="/users/register") {
     next(errors.accessDenyError) ;
