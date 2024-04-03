@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../utils/database");
-const Project=require("./projects")
+const Suggestion=require("./suggestion")
+const User=require("./users")
 //TODO: بجای ایدی پروژه بیا ایدی پیشنهاد رو بزار
 const Message = sequelize.define("message", {
   id: {
@@ -13,19 +14,24 @@ const Message = sequelize.define("message", {
     type: DataTypes.TEXT,
     allowNull: false,
   },
+  owner: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
   
-  employer_username: {
-    type: DataTypes.TEXT,
-    allowNull: false,
-  },
-  freelancer_username:{
-    type: DataTypes.TEXT,
-    allowNull: false,
-  },
 });
 
-Project.hasMany(Message, {
-    foreignKey: 'progectId'
+Suggestion.hasMany(Message, {
+    foreignKey: 'suggestId'
   });
+
+  User.hasMany(Suggestion, {
+    foreignKey: 'employer_username'
+});
+
+User.hasMany(Suggestion, {
+    foreignKey: 'freelancer_username'
+});
+
  
 module.exports=Message
