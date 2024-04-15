@@ -5,6 +5,7 @@ const adminRouter=require('./routes/admin')
 const projectRouter=require('./routes/project')
 const suggestionRouter=require('./routes/suggestion')
 const messageRouter=require('./routes/message')    //TODO : clean this routers to one require
+const skillRouter=require('./routes/skill')    //TODO : clean this routers to one require
 
 const app = express()
 const errorHandler=require("./middlewares/errors")
@@ -41,6 +42,7 @@ app.use('/admin', adminRouter)
 app.use('/project', projectRouter)
 app.use('/suggest', suggestionRouter)
 app.use('/message', messageRouter)
+app.use('/skill', skillRouter)
 
 app.use(errorHandler)
 

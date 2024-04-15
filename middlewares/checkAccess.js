@@ -13,9 +13,13 @@ module.exports = async (req, res, next) => {
   if (user && url =="/users/login" || url=="/users/register") {
     next(errors.accessDenyError) ;
   }
-  if(!user && (url=="/project/" || url=="/project/done/freelancer" || url=="/project/done/employer" || url=="/suggest/" || url=="/message/") )
+  if(!user && (url=="/project/" || url=="/project/done/freelancer" || url=="/project/done/employer" || url=="/suggest/" || url=="/message/"|| url=="/skill/") )
   {
     next(errors.accessDenyError) ;
+  }
+  if(user &&(url=="/skill/")&& user.role!="admin")
+  {
+    next(errors.accessDenyError)
   }
   req.user=user
   req.url=url;
