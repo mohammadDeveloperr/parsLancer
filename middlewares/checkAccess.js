@@ -9,11 +9,12 @@ module.exports = async (req, res, next) => {
   const user = await shared.redisModel.get(token);
   //let url=req.originalUrl.substring(0, req.originalUrl.indexOf("?")) || req.originalUrl;
   const url=`${req.baseUrl}/`
+  const method=req.method
   req.originalUrl=url
   if (user && url =="/users/login" || url=="/users/register") {
     next(errors.accessDenyError) ;
   }
-  if(!user && (url=="/project/" || url=="/project/done/freelancer" || url=="/project/done/employer" || url=="/suggest/" || url=="/message/"|| url=="/skill/") )
+  if(!user && (url=="/project/" || url=="/project/done/freelancer" || url=="/project/done/employer" || url=="/suggest/" || url=="/message/"|| url=="/skill/" ||(url=="/userSkill/"&&method!="GET")) )
   {
     next(errors.accessDenyError) ;
   }
