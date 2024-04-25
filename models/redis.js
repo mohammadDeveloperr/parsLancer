@@ -9,7 +9,7 @@ class RedisModel {
     try {
       console.log(value)
       value=JSON.stringify(value)
-      expire? await this.redis.set(key, value): await this.redis.set(key, value,"EX",expire);
+      expire? await this.redis.set(key, value,"EX",expire): await this.redis.set(key, value);
       
     } catch (err) {
       throw err;  

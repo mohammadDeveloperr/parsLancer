@@ -24,6 +24,8 @@
     "morgan": "^1.10.0",
     "mysql2": "^3.9.2",
     "sequelize": "^6.37.1",
+    "svg-captcha": "^1.4.0",
+    "uuid": "^9.0.0",
     "winston": "^3.12.0"
   }
 }

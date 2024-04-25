@@ -8,7 +8,7 @@ const messageRouter=require('./routes/message')    //TODO : clean this routers t
 const skillRouter=require('./routes/skill')    //TODO : clean this routers to one require
 const userSkill=require('./routes/userSkill') 
 const projectSkill=require('./routes/projectSkill') 
-
+const captchaRouter=require("./routes/captcha")
 
 const app = express()
 const errorHandler=require("./middlewares/errors")
@@ -48,6 +48,7 @@ app.use('/message', messageRouter)
 app.use('/skill', skillRouter)
 app.use('/userSkill', userSkill)
 app.use('/projectSkill', projectSkill)
+app.use('/captcha', captchaRouter)
 
 app.use(errorHandler)
 

@@ -15,7 +15,6 @@ module.exports.getProjectSkill = async (req, res, next) => {
 
 module.exports.addProjectSkill = async (req, res, next) => {
     try {
-        //TODO چک اکسس و ولیدیتور نوشته شده تستش کن 
 
 
         const { projectId } = req.params
