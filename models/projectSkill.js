@@ -3,7 +3,7 @@ const { sequelize } = require("../utils/database");
 const Skill = require("./skills")
 const Project = require("./projects")
 
-const projectSkill = sequelize.define("suggestion", {
+const ProjectSkill = sequelize.define("projectSkill", {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -12,12 +12,12 @@ const projectSkill = sequelize.define("suggestion", {
     }
 });
 
-Skill.hasMany(projectSkill, {
+Skill.hasMany(ProjectSkill, {
     foreignKey: 'skill'
 });
 
-Project.hasMany(projectSkill, {
+Project.hasMany(ProjectSkill, {
     foreignKey: 'projectId'
 });
 
-module.exports = projectSkill
+module.exports = ProjectSkill
