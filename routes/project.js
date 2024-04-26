@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const projectValidator=require('../middlewares/projectValidator')
+const projectValidator=require('../middlewares/validators/projectValidator')
 const checkAccess=require('../middlewares/checkAccess')
 const projectController=require('../controllers/projectController');
 

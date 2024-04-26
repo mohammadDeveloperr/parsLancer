@@ -4,7 +4,6 @@ const userValidator=require('../middlewares/validators/userValidator')
 const userController=require('../controllers/userController');
 const checkAccess=require('../middlewares/checkAccess')
 
-router.get("/",userController.getUser);
-router.put("/",checkAccess,userValidator,userController.updateUser)
-router.patch("/",checkAccess,userValidator,userController.updatePassword)
+router.post('/login',checkAccess,userValidator,userController.login)
+router.post('/register',checkAccess,userValidator,userController.register)
 module.exports = router

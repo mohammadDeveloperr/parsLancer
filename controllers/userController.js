@@ -13,7 +13,7 @@ module.exports.login = async (req, res, next) => {
     const isEqual = await bcrypt.compare(password, user.password);
 
     if (!isEqual) {
-      throw "نام کابری یا رمز عبور اشتباه میباشد";
+      throw {statusCode:401,message:"نام کابری یا رمز عبور اشتباه میباشد",data:"wrong password"};
     }
 
     const token = jwt.sign(
@@ -38,8 +38,7 @@ module.exports.login = async (req, res, next) => {
     );
     res.status(200).json({ token });
   } catch (err) {
-    console.log(err);
-    next({ message: "ثبت نام کاربر به مشکل خورده است", data: err });
+    next({ message:err.message|| "لاگین کاربر به مشکل خورده است", data:err.data|| err,statusCode:err.statusCode||null });
   }
 };
 
@@ -56,7 +55,7 @@ module.exports.register = async (req, res, next) => {
     if(err.name="SequelizeUniqueConstraintError")
     next({ message: "نام کاربری یا ایمیل یا شماره همراه تکراری میباشد", data: err });
 
-    next({ message: "ثبت نام کاربر به مشکل خورده است", data: err });
+    next({ message:err.message|| "ثبت نام کاربر به مشکل خورده است", data:err.data|| err,statusCode:err.statusCode||null });
   }
 };
 
@@ -66,7 +65,7 @@ module.exports.getUser = async (req, res, next) => {
     const users = await getUser(username);
     res.status(200).json({users});
   } catch (err) {
-    next({ message: "پیدا کردن کاربر با مشکل مواجه شد", data: err });
+    next({ message:err.message|| "پیدا کردن کاربر با مشکل مواجه شد", data:err.data|| err,statusCode:err.statusCode||null });
   }
 };
 
@@ -80,7 +79,8 @@ module.exports.updateUser=async (req,res,next)=>{
     res.status(200).json({message:`کاربر ${username} با موفقیت اپدیت شد`});
 
   } catch (err) {
-    next({ message: "پیدا کردن کاربر با مشکل مواجه شد", data: err });
+    next({ message:err.message|| "بروزرسانی کردن کاربر با مشکل مواجه شد", data:err.data|| err,statusCode:err.statusCode||null });
+
   }
 }
 
@@ -102,7 +102,6 @@ module.exports.updatePassword=async (req,res,next)=>{
 
 
   } catch (err) {
-    next({statusCode:err.statusCode||null, message: err.message ||"پسورد شما اپدیت نشد", data: err.data || err });
-
+    next({ message:err.message||"پسورد شما اپدیت نشد", data:err.data|| err,statusCode:err.statusCode||null });
   }
 }

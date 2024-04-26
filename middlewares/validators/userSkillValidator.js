@@ -3,7 +3,7 @@ const ajv = new Ajv({ allErrors: true });
 require("ajv-formats")(ajv)
 require("ajv-errors")(ajv);
 
-const schemas = require('../models/schemas/skillSchema')
+const schemas = require('../../schemas/userSkillSchema')
 
 
 
@@ -14,8 +14,8 @@ const schemaValidator = async (req, res, next) => {
         let schema = ""
         let validate;
         let valid;
-        if (url == '/skill/' && (method == "POST" || method == "PUT")) {
-            schema = schemas.addSkillSchema
+        if (url == '/userSkill/' && (method == "POST" || method == "PUT")) {
+            schema = schemas.addUserSkillSchema
             console.log(req.query)
             validate = ajv.compile(schema);
             valid = validate(req.body);

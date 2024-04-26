@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const checkAccess=require('../middlewares/checkAccess')
 const userSkillController=require('../controllers/userSkillController');
-const userSkillValidator=require('../middlewares/userSkillValidator')
+const userSkillValidator=require('../middlewares/validators/userSkillValidator')
 
 router.get("/",checkAccess,userSkillController.getUserSkill);
 router.post("/",checkAccess,userSkillValidator,userSkillController.addUserSkill)

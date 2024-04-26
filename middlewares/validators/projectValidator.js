@@ -3,16 +3,16 @@ const ajv = new Ajv({ allErrors: true });
 require("ajv-formats")(ajv)
 require("ajv-errors")(ajv);
 
-const schemas=require('../models/schemas/adminSchema')
+const schemas=require('../../schemas/projectSchema')
 
 
 
-const adminValidator = async (req, res, next) => {
+const projectValidator = async (req, res, next) => {
   try {
-    let url=req.originalUrl.substring(0, req.originalUrl.indexOf("?"));
+    let url=req.originalUrl
     let method=req.method
-    let schema;
-    if(url=='/admin/users/' && method=="PUT") schema=schemas.updateUser
+    let schema=""
+    if(url=='/project/' && (method=="POST" || method=="PUT")) schema=schemas.addProjectSchema
     const validate = ajv.compile(schema);
     const valid = validate(req.body);
     console.log(valid);
@@ -27,4 +27,4 @@ const adminValidator = async (req, res, next) => {
   }
 };
 
-module.exports =  adminValidator ;
+module.exports =  projectValidator ;

@@ -3,22 +3,29 @@ const ajv = new Ajv({ allErrors: true });
 require("ajv-formats")(ajv)
 require("ajv-errors")(ajv);
 
-const schemas = require('../models/schemas/projectSkillSchema')
+const schemas = require('../../schemas/suggestionSchema')
 
 
 
-const schemaValidator = async (req, res, next) => {
+const suggestionValidator = async (req, res, next) => {
     try {
         let url = req.url
         let method = req.method
         let schema = ""
         let validate;
         let valid;
-        if (url == '/projectSkill/' && (method == "POST" || method == "PUT")) {
-            schema = schemas.addProjectSkillSchema
+        if (url == '/suggest/' && (method == "POST" || method == "PUT")) {
+            schema = schemas.addSuggestSchema
             console.log(req.query)
             validate = ajv.compile(schema);
             valid = validate(req.body);
+        }
+        else if(url == '/suggest/' && method=="GET")
+        {
+            schema = schemas.getSuggestSchema
+            console.log(req.query)
+            validate = ajv.compile(schema);
+            valid = validate(req.query);
         }
         console.log(valid);
         if (!valid) {
@@ -32,4 +39,4 @@ const schemaValidator = async (req, res, next) => {
     }
 };
 
-module.exports = schemaValidator;
+module.exports = suggestionValidator;

@@ -1,14 +1,5 @@
 const express = require('express')
-const usersRouter=require('./routes/users')
-
-const adminRouter=require('./routes/admin')
-const projectRouter=require('./routes/project')
-const suggestionRouter=require('./routes/suggestion')
-const messageRouter=require('./routes/message')    //TODO : clean this routers to one require
-const skillRouter=require('./routes/skill')    //TODO : clean this routers to one require
-const userSkill=require('./routes/userSkill') 
-const projectSkill=require('./routes/projectSkill') 
-const captchaRouter=require("./routes/captcha")
+const router=require("./routes/index")
 
 const app = express()
 const errorHandler=require("./middlewares/errors")
@@ -40,16 +31,17 @@ redis.on("error",(err)=>{
 // ...
 
 app.use(morganMiddleware);
-app.use('/users', usersRouter)
-app.use('/admin', adminRouter)
-app.use('/project', projectRouter)
-app.use('/suggest', suggestionRouter)
-app.use('/message', messageRouter)
-app.use('/skill', skillRouter)
-app.use('/userSkill', userSkill)
-app.use('/projectSkill', projectSkill)
-app.use('/captcha', captchaRouter)
-
+app.use('/users', router.usersRouter)
+app.use('/admin', router.adminRouter)
+app.use('/project', router.projectRouter)
+app.use('/suggest', router.suggestionRouter)
+app.use('/message', router.messageRouter)
+app.use('/skill', router.skillRouter)
+app.use('/userSkill', router.userSkill)
+app.use('/projectSkill', router.projectSkill)
+app.use('/captcha', router.captchaRouter)
+app.use('/login', router.loginRouter)
+app.use('/register', router.registerRouter)
 app.use(errorHandler)
 
 

@@ -3,17 +3,18 @@ const ajv = new Ajv({ allErrors: true });
 require("ajv-formats")(ajv)
 require("ajv-errors")(ajv);
 
-const schemas=require('../models/schemas/userSchema')
+const schemas=require('../../schemas/userSchema')
 
 
 
 const userValidator = async (req, res, next) => {
   try {
     let url=req.originalUrl
+    const secondUrl=req.path
     let method=req.method
     let schema;
-    if(url=='/users/register') schema=schemas.registerSchema
-    else if(url=='/users/login')schema=schemas.loginSchema
+    if(url=='/register/') schema=schemas.registerSchema
+    else if(url=='/login/')schema=schemas.loginSchema
     else if(url=='/users/' && method=="PUT")schema=schemas.updateUser
     else if(url=='/users/' && method=="PATCH")schema=schemas.updatePassword
     const validate = ajv.compile(schema);

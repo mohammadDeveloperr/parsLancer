@@ -3,7 +3,7 @@ const ajv = new Ajv({ allErrors: true });
 require("ajv-formats")(ajv)
 require("ajv-errors")(ajv);
 
-const schemas = require('../models/schemas/messageSchema')
+const schemas = require('../../schemas/messageSchema')
 
 
 

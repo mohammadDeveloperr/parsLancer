@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const skillValidator=require('../middlewares/skillValidator')
+const skillValidator=require('../middlewares/validators/skillValidator')
 const checkAccess=require('../middlewares/checkAccess')
 const skillController=require('../controllers/skillController');
 

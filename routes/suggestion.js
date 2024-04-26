@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const checkAccess=require('../middlewares/checkAccess')
 const suggestionController=require('../controllers/suggestionController');
-const suggestionValidator=require('../middlewares/suggestionValidator')
+const suggestionValidator=require('../middlewares/validators/suggestionValidator')
 
 router.get("/",checkAccess,suggestionValidator,suggestionController.getSuggest);
 router.post("/:projectId",checkAccess,suggestionValidator,suggestionController.addSuggest)
