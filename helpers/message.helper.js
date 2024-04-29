@@ -4,7 +4,7 @@ const Message = require("../models/message");
 module.exports.getMessage = async (params = null) => {
     try {
       const condition = params ? { where: { ...params } } : {};
-      const result = await Message.findAll({ ...condition});
+      const result = await Message.findAll({ condition});
       return result;
     } catch (err) {
       throw err;

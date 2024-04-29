@@ -5,7 +5,7 @@ const adminController=require('../controllers/adminController');
 
 router.get("/users/",adminController.getUser);
 router.put("/users/",adminValidator,adminController.updateUser)
-router.delete("/users/",adminValidator,adminController.deleteUser)
+router.delete("/users/",adminController.deleteUser)
 
 
 module.exports = router

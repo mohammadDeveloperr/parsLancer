@@ -1,9 +1,9 @@
 const Project = require("../models/projects");
 
 
-module.exports.getProject = async (id = null) => {
+module.exports.getProject = async (param = null) => {
     try {
-      const condition = id ? { where: { id } } : {};
+      const condition = param ? { where: { ...param } } : {};
       const result = await Project.findAll({ ...condition});
       return result;
     } catch (err) {

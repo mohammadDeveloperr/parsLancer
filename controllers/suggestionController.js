@@ -19,8 +19,8 @@ module.exports.getSuggest = async (req, res, next) => {
   module.exports.addSuggest = async (req, res, next) => {
     try {
       const {projectId}=req.params
-      const project=await projectHelper.getProject(projectId);
-      if(!project){
+      const project=await projectHelper.getProject({id:projectId});
+      if(!project[0]){
         throw {message:"پروژه مورد نظر پیدا نشد ",statusCode:"404",data:"project not found"}
       }
         const freelancer_username=req.user.username
@@ -30,7 +30,7 @@ module.exports.getSuggest = async (req, res, next) => {
       console.log(result);
       res
         .status(200)
-        .json({ message: "project added successfully", statusCode: 200 });
+        .json({ message: "suggest added successfully", statusCode: 200 });
     } catch (err) {
       console.log(err);
       next({ message:err.message || "اضافه کردن پروژه با مشکل مواجه شد", data:err.data|| err });
@@ -64,10 +64,10 @@ module.exports.getSuggest = async (req, res, next) => {
     try {
       const { id } = req.query;
       const suggest = await helper.getSuggest({id});
-      const {projectId,freelancer_username}=suggest[0]
       if (!suggest[0]) {
         throw {message:"پیشنهاد پیدا نشد ",data:"suggest not found",statusCode:404}
       }
+      const {projectId,freelancer_username}=suggest[0]
       if (
         suggest[0].employer_username !== req.user.username &&req.user.role != "admin") { 
           throw "access denied";

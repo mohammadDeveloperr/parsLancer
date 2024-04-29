@@ -66,15 +66,12 @@ module.exports.updateUserSkill = async (req, res, next) => {
 module.exports.deleteUserSkill = async (req, res, next) => {
   try {
 
-    const param = req.query;
-    const skill = await helper.getUserSkill(param);
-    if(skill[0]!=req.username){
-      throw "access denied"
-    }
+    const {username} = req.user;
+    const skill = await helper.getUserSkill({username});
     if (!skill[0]) {
-      throw { message: "همچین مهارتی  وجود ندارد ", statusCode: 404, data: "skill not found" }
+      throw { message: " مهارتی  وجود ندارد ", statusCode: 404, data: "skill not found" }
     }
-    const result = await helper.deleteUserSkill(param);
+    const result = await helper.deleteUserSkill({username});
 
     console.log(result);
     res.status(200).json({ message: "مهارت  با موفقیت حذف شد" });

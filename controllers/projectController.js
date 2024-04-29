@@ -6,8 +6,8 @@ const errors = require("../config/errors");
 
 module.exports.getProject = async (req, res, next) => {
   try {
-    const { id } = req.query;
-    const projects = await helper.getProject(id);
+    const param = req.query;
+    const projects = await helper.getProject(param);
     res.status(200).json({ projects });
   } catch (err) {
     next({ message: "پیدا کردن کاربر با مشکل مواجه شد", data: err });
@@ -34,8 +34,8 @@ module.exports.addProject = async (req, res, next) => {
 
 module.exports.updateProject = async (req, res, next) => {
   try {
-    const { id } = req.query;
-    const project = await helper.getProject(id);
+    const { id } = req.params;
+    const project = await helper.getProject({id});
     if (!project[0]) {
       throw "project not found";
     }
@@ -65,13 +65,13 @@ module.exports.updateProject = async (req, res, next) => {
 
 module.exports.deleteProject = async (req, res, next) => {
   try {
-    const { id } = req.query;
-    const project = await helper.getProject(id);
+    const {id} = req.params;
+    const project = await helper.getProject({id});
     if (!project[0]) {
-      throw "project not found";
+      throw {message:"پروژه ای با این ایدی یافت نشد",data:"project not found",statusCode: 404};
     }
     if (
-      project[0].employer_username !== req.user.username &&
+      project[0].employer_username != req.user.username &&
       req.user.role != "admin"
     ) {
       throw "access denied";
@@ -81,16 +81,8 @@ module.exports.deleteProject = async (req, res, next) => {
     console.log(result);
     res.status(200).json({ message: "پروژه  با موفقیت حذف شد" });
   } catch (err) {
-    if (err == "project not found") {
-      next({
-        statusCode: 404,
-        message: "پروژه ای با این ایدی یافت نشد",
-        data: "project not found",
-      });
-    }
-
     if (err == "access denied") next(errors.accessDenyError);
-    next({ message: "حذف کردن پروژه با مشکل مواجه شد", data: err });
+    next({ message:err.message|| "حذف کردن پروژه با مشکل مواجه شد", data:err.data|| err,statusCode:err.statusCode||null });
   }
 };
 
@@ -103,7 +95,7 @@ module.exports.freelancerStatus = async (req, res, next) => {  //this api for ch
     }
     if (
       project.freelancer_username !== req.user.username &&req.user.role != "admin") {
-      throw "access denied";
+        throw "access denied";
     }
     const isEmployerDone=project.employer_done?"true":false;
     let newProject;

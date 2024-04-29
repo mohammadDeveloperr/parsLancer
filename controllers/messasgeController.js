@@ -14,7 +14,7 @@ module.exports.getMessage = async (req, res, next) => {
     const messages = await helper.getMessage(messageProperty);
     res.status(200).json({ messages });
   } catch (err) {
-    next({ message: "پیدا کردن کاربر با مشکل مواجه شد", data: err });
+    next({ message: "پیدا کردن پیام با مشکل مواجه شد", data: err });
   }
 };
 module.exports.addMessage= async (req, res, next) => {
@@ -36,7 +36,7 @@ module.exports.addMessage= async (req, res, next) => {
       console.log(result);
       res
         .status(200)
-        .json({ message: "project added successfully", statusCode: 200 });
+        .json({ message: "message added successfully", statusCode: 200 });
     } catch (err) {
       console.log(err);
       next({ message:err.message || "اضافه کردن پیام با مشکل مواجه شد", data:err.data|| err });

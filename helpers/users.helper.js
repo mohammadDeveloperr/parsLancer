@@ -6,7 +6,8 @@ const bcrypt = require("bcryptjs");
 
 module.exports.checkDbForLogin = async (username, password) => {
   try {
-    const user = await User.findOne({ username });
+    const condition ={ where: { username } } ;
+    const user = await User.findOne( condition );
     if (!user) {
       throw "نام کاربری یا رمز عبور اشتباه میباشد ";
     }

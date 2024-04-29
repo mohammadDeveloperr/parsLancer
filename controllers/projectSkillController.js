@@ -18,7 +18,7 @@ module.exports.addProjectSkill = async (req, res, next) => {
 
 
         const { projectId } = req.params
-        const project = await projectHelper.getProject(projectId);
+        const project = await projectHelper.getProject({id:projectId});
         if (!project[0]) {
             throw { message: "پروژه مورد نظر پیدا نشد ", statusCode: "404", data: "project not found" }
         }
@@ -54,7 +54,7 @@ module.exports.updateProjectSkill = async (req, res, next) => {
         const { projectId } = req.params
         const { skills } = req.body;
         
-        const project = await projectHelper.getProject(projectId);
+        const project = await projectHelper.getProject({id:projectId});
         if (!project[0]) {
             throw { message: "پروژه مورد نظر پیدا نشد ", statusCode: "404", data: "project not found" }
         }
@@ -78,7 +78,7 @@ module.exports.updateProjectSkill = async (req, res, next) => {
 module.exports.deleteProjectSkill = async (req, res, next) => {
     try {
         const { projectId } = req.params        
-        const project = await projectHelper.getProject(projectId);
+        const project = await projectHelper.getProject({id:projectId});
         if (!project[0]) {
             throw { message: "پروژه مورد نظر پیدا نشد ", statusCode: "404", data: "project not found" }
         }

@@ -1,0 +1,7451 @@
+{
+	"info": {
+		"_postman_id": "9efedbbd-54a6-4cdb-8456-b82a2d8997a7",
+		"name": "parsLancer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28724957"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "bad request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoibW9oYW1tYWQiLCJlbWFpbCI6Im1vaGFtbWFkbW9qYXZlcjM5QGdtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJhbGxpIn0sImlhdCI6MTcxMDAwMTM0Nn0.eOwkPjKeMkDBCZlNnvn2YsWZZi3kyAIBCR3Y2YrRBao",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n \"username\":\"mohammad\",\n \"password\":\"12345\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5f-XH3av17CypMOMrG0M7stZq1bVJY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 25 Apr 2024 09:44:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"نام کابری یا رمز عبور اشتباه میباشد\",\n    \"statusCode\": 401\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoibW9oYW1tYWQiLCJlbWFpbCI6Im1vaGFtbWFkbW9qYXZlcjM5QGdtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJhbGxpIn0sImlhdCI6MTcxMDAwMTM0Nn0.eOwkPjKeMkDBCZlNnvn2YsWZZi3kyAIBCR3Y2YrRBao",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n \"username\":\"mohammad\",\n \"password\":\"1234\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "213"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d5-db+i9KitzihtQwYQo1YfT4hivC4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 25 Apr 2024 09:44:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiYWxsaSIsImVtYWlsIjoiYWxsaUBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiYWxsaSJ9LCJpYXQiOjE3MTQwMzgyOTR9.Qm9wdVGJ7tMNrTSO11i2IVFR20tstM5YQGZXYDa9Rb4\"\n}"
+						},
+						{
+							"name": "bad request body",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoibW9oYW1tYWQiLCJlbWFpbCI6Im1vaGFtbWFkbW9qYXZlcjM5QGdtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJhbGxpIn0sImlhdCI6MTcxMDAwMTM0Nn0.eOwkPjKeMkDBCZlNnvn2YsWZZi3kyAIBCR3Y2YrRBao",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"username\":\"mohammad\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-Y1pzysBBJByOWvEtPPfdd8zKrOk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:36:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"validation error\",\n    \"message\": [\n        \"لطفا رمز ورود خود را وارد کنید\"\n    ],\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "access deny",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n \"username\":\"mohammad\",\n \"password\":\"1234\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:37:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						}
+					]
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "bad request body",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/register",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "346"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15a-QZhtpmB9sDfQzzHnXPnOVpnWqF4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 25 Apr 2024 09:34:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"validation error\",\n    \"message\": [\n        \"لطفا نام خود را وارد کنید\",\n        \"لطفا نام کاربری خود را وارد کنید\",\n        \"لطفا رمز ورود خود را وارد کنید\",\n        \"لطفا شماره تلفن هماره خود را وارد کنید\",\n        \"لطفا ایمیل خود را وارد کنید\"\n    ],\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\":\"alli\",\n    \"last_name\":\"mojaver\",\n    \"username\":\"alli\",\n    \"password\":\"1234\",\n    \"email\":\"alli@gmail.com\",\n    \"number\":\"25155\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/register",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f-KNoOtJgnnaNKLhHDCt+UDMpF3Cg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 25 Apr 2024 09:34:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"کاربر alli با موفقیت ثبت نام شد\"\n}"
+						},
+						{
+							"name": "access deny",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\":\"alli\",\n    \"last_name\":\"mojaver\",\n    \"username\":\"alli\",\n    \"password\":\"1234\",\n    \"email\":\"alli@gmail.com\",\n    \"number\":\"25155\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/register",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:35:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "bad request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\":\"alli\",\n    \"last_name\":\"mojaver\",\n    \"username\":\"alli\",\n    \"password\":\"1234\",\n    \"email\":\"alli@gmail.com\",\n    \"number\":\"25155\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/register",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "119"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"77-umeyl+/eZ1WF50oK+i4bMpmplvQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:38:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"نام کاربری یا ایمیل یا شماره همراه تکراری میباشد\",\n    \"statusCode\": 500\n}"
+						}
+					]
+				},
+				{
+					"name": "get user",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/users",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "258"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"102-pZX1zoOtY+araxoSYsG63PBP/m4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 25 Apr 2024 09:45:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"users\": [\n        {\n            \"first_name\": \"alli\",\n            \"last_name\": \"mojaver\",\n            \"username\": \"alli\",\n            \"email\": \"alli@gmail.com\",\n            \"number\": \"25155\",\n            \"about_me\": null\n        },\n        {\n            \"first_name\": \"alli\",\n            \"last_name\": \"mojaver\",\n            \"username\": \"mohammad\",\n            \"email\": \"mohammad@gmail.com\",\n            \"number\": \"2555\",\n            \"about_me\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "mohammad",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "bad request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoibW9oYW1tYWQiLCJlbWFpbCI6Im1vaGFtbWFkbW9qYXZlcjM5QGdtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJhbGxpIn0sImlhdCI6MTcxMDUwOTU3M30.dAiGEjG9B-MwpB-5irDP40u7lnjAQsWDUcGne_U4FXo",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\": \"mohammad\",\n    \"last_name\": \"rahbardar\",\n     \"about_me\":\"hi my name is mohammad\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/users/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 25 Apr 2024 09:52:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\": \"mohammad\",\n    \"last_name\": \"rahbardar\",\n     \"about_me\":\"hi my name is mohammad\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/users/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "67"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"43-/NHyRHENZd7AjrUf5yhbHbpsRLQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 25 Apr 2024 09:53:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"کاربر mohammad با موفقیت اپدیت شد\"\n}"
+						},
+						{
+							"name": "bad request body",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"last_name\": \"rahbardar\",\n     \"about_me\":\"hi my name is mohammad\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/users/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "105"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"69-+29A6dSohq/pzK8f5jMOPQiFVU4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 25 Apr 2024 09:55:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"validation error\",\n    \"message\": [\n        \"لطفا نام  خود را وارد کنید\"\n    ],\n    \"statusCode\": 400\n}"
+						}
+					]
+				},
+				{
+					"name": "update password",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oldPassword\":\"1234\",\n    \"newPassword\":\"1111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/mohammad",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"mohammad"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "bad request",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoibW9oYW1tYWQiLCJlbWFpbCI6Im1vaGFtbWFkbW9qYXZlcjM5QGdtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJhbGxpIn0sImlhdCI6MTcxMDQxNDk1Nn0.p52hjngk7--8uMX8-3SptuIbksPZfNilr7DyB-NyHfg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"newPassword\":\"1111\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/users/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 25 Apr 2024 09:54:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "bad request body",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"newPassword\":\"1111\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/users/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "115"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"73-FWQ7PSyGdQvq0n+5ohTGvK2A/ec\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 25 Apr 2024 09:54:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"validation error\",\n    \"message\": [\n        \"لطفا رمز عبور فعلی را وارد کنید\"\n    ],\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"oldPassword\":\"1234\",\n    \"newPassword\":\"1111\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/users/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "67"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"43-bHe5lIJNXBAGGUPEzUG9MQXShhY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 25 Apr 2024 09:55:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"پسورد شما با موفقیت تغییر کرد\"\n}"
+						}
+					]
+				}
+			],
+			"description": "این قسمت برای AAA و تغییر مشخصات کاربران است"
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "mohammad",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\":\"alli\",\n    \"last_name\":\"mojaver\",\n    \"username\":\"mohammad\",\n    \"password\":\"1234\",\n    \"email\":\"mohammadmojaver39@gmail.com\",\n    \"number\":\"09944985072\",\n    \"role\":\"user\",\n    \"about_me\":\"hello world!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/admin/users/?username=mohammad",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"admin",
+										"users",
+										""
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "mohammad"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "67"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"43-/NHyRHENZd7AjrUf5yhbHbpsRLQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:40:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"کاربر mohammad با موفقیت اپدیت شد\"\n}"
+						},
+						{
+							"name": "bad request body",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\":\"alli\",\n    \"last_name\":\"mojaver\",\n    \"number\":\"09944985072\",\n    \"role\":\"user\",\n    \"about_me\":\"hello world!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/admin/users/?username=mohammadd",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"admin",
+										"users",
+										""
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "mohammadd"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "226"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e2-3UIAp7wjxQ/n0dAm1rf0592ae44\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:42:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"validation error\",\n    \"message\": [\n        \"لطفا نام کاربری خود را وارد کنید\",\n        \"لطفا رمز ورود خود را وارد کنید\",\n        \"لطفا ایمیل خود را وارد کنید\"\n    ],\n    \"statusCode\": 400\n}"
+						}
+					]
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admin/users/mohammad",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"users",
+								"mohammad"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/admin/users/?username=mohammadd",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"admin",
+										"users",
+										""
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "mohammadd"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"40-P/otEpUesHchYkqg3sMTIMnfdss\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:44:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"کاربر mohammadd با موفقیت حذف شد\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get user",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/admin/users/?username=mohammad",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"admin",
+										"users",
+										""
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "mohammad"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "252"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"fc-oy8466RyuM9qoVddtlSOikTRmIs\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:45:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"users\": [\n        {\n            \"first_name\": \"alli\",\n            \"last_name\": \"mojaver\",\n            \"username\": \"mohammad\",\n            \"password\": \"$2a$08$Lh4lCKK2CPWlAJr1UKDb7OXcVP9hnUv7LUztNVsWEYM37R9bGl73K\",\n            \"email\": \"mohammadmojaver39@gmail.com\",\n            \"role\": \"user\",\n            \"number\": \"09944985072\",\n            \"about_me\": \"hello world!\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "not found request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/admin/users/?username=mohammadd",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"admin",
+										"users",
+										""
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "mohammadd"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "12"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c-1bl/ybs8pYaLwWPVCd0mBRAdBaY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:45:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"users\": []\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "projects",
+			"item": [
+				{
+					"name": "add project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{mohammad}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"explain\":\"test prject\",\n    \"title\":\"hi\",\n     \"minPrice\":50,\n     \"maxPrice\":100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/project/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"project",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"explain\":\"test prject\",\n    \"title\":\"hi\",\n     \"minPrice\":50,\n     \"maxPrice\":100\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/project/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39-4r6kxz+MA3l7RSTayiUrWakOyyI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:45:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"project added successfully\",\n    \"statusCode\": 200\n}"
+						},
+						{
+							"name": "bad request body",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"explain\":\"test prject\",\n     \"maxPrice\":100\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/project/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "183"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b7-N3Z72DC6gXF/pe1MxYcCQkFSjS4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:46:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"validation error\",\n    \"message\": [\n        \"لطفا تیتر پروژه  را وارد کنید\",\n        \"لطفا حداقل قیمت پروژه خود را وارد کنید\"\n    ],\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "access deny",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"explain\":\"test prject\",\n     \"maxPrice\":100\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/project/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										""
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:46:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						}
+					]
+				},
+				{
+					"name": "get project",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/project",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"project"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "a project in pending status",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/project",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "574"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"23e-xIBLkJl17LE2jkSDeePankt6Xb4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:47:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"projects\": [\n        {\n            \"id\": 1,\n            \"title\": \"hi\",\n            \"explain\": \"test prject\",\n            \"minPrice\": \"50\",\n            \"maxPrice\": \"100\",\n            \"status\": \"pending\",\n            \"employer_username\": \"mohammad\",\n            \"freelancer_username\": null,\n            \"employer_done\": false,\n            \"freelancer_done\": false,\n            \"createdAt\": \"2024-04-24T17:44:59.000Z\",\n            \"updatedAt\": \"2024-04-24T17:44:59.000Z\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"hi\",\n            \"explain\": \"test prject\",\n            \"minPrice\": \"50\",\n            \"maxPrice\": \"100\",\n            \"status\": \"pending\",\n            \"employer_username\": \"mohammad\",\n            \"freelancer_username\": null,\n            \"employer_done\": false,\n            \"freelancer_done\": false,\n            \"createdAt\": \"2024-04-26T08:45:56.000Z\",\n            \"updatedAt\": \"2024-04-26T08:45:56.000Z\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "success search",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/project?title=hi",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "hi"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "574"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"23e-xIBLkJl17LE2jkSDeePankt6Xb4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:49:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"projects\": [\n        {\n            \"id\": 1,\n            \"title\": \"hi\",\n            \"explain\": \"test prject\",\n            \"minPrice\": \"50\",\n            \"maxPrice\": \"100\",\n            \"status\": \"pending\",\n            \"employer_username\": \"mohammad\",\n            \"freelancer_username\": null,\n            \"employer_done\": false,\n            \"freelancer_done\": false,\n            \"createdAt\": \"2024-04-24T17:44:59.000Z\",\n            \"updatedAt\": \"2024-04-24T17:44:59.000Z\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"hi\",\n            \"explain\": \"test prject\",\n            \"minPrice\": \"50\",\n            \"maxPrice\": \"100\",\n            \"status\": \"pending\",\n            \"employer_username\": \"mohammad\",\n            \"freelancer_username\": null,\n            \"employer_done\": false,\n            \"freelancer_done\": false,\n            \"createdAt\": \"2024-04-26T08:45:56.000Z\",\n            \"updatedAt\": \"2024-04-26T08:45:56.000Z\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "not found search",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/project?id=5",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "15"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f-vLd7WZ0ZjsEpPQiC7BewpUafoH0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:50:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"projects\": []\n}"
+						},
+						{
+							"name": "a project in doing status",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/project?id=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "294"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"126-Ays7egj//oYjtFbaTa5bJs8EUEI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:22:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"projects\": [\n        {\n            \"id\": 1,\n            \"title\": \"hi\",\n            \"explain\": \"test prject\",\n            \"minPrice\": \"50\",\n            \"maxPrice\": \"100\",\n            \"status\": \"doing\",\n            \"employer_username\": \"mohammad\",\n            \"freelancer_username\": \"alli\",\n            \"employer_done\": false,\n            \"freelancer_done\": false,\n            \"createdAt\": \"2024-04-24T17:44:59.000Z\",\n            \"updatedAt\": \"2024-04-26T09:22:12.000Z\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "a project that accept just by freelancer",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/project?id=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "293"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"125-TAhVB+oGW+x5fFUqe8bNw4q5wzo\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:34:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"projects\": [\n        {\n            \"id\": 1,\n            \"title\": \"hi\",\n            \"explain\": \"test prject\",\n            \"minPrice\": \"50\",\n            \"maxPrice\": \"100\",\n            \"status\": \"doing\",\n            \"employer_username\": \"mohammad\",\n            \"freelancer_username\": \"alli\",\n            \"employer_done\": false,\n            \"freelancer_done\": true,\n            \"createdAt\": \"2024-04-24T17:44:59.000Z\",\n            \"updatedAt\": \"2024-04-26T09:32:35.000Z\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "a project in done status",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/project?id=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "291"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"123-3Ehn1CiClPHzUt3Q8oAp/JJUGRM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:35:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"projects\": [\n        {\n            \"id\": 1,\n            \"title\": \"hi\",\n            \"explain\": \"test prject\",\n            \"minPrice\": \"50\",\n            \"maxPrice\": \"100\",\n            \"status\": \"done\",\n            \"employer_username\": \"mohammad\",\n            \"freelancer_username\": \"alli\",\n            \"employer_done\": true,\n            \"freelancer_done\": true,\n            \"createdAt\": \"2024-04-24T17:44:59.000Z\",\n            \"updatedAt\": \"2024-04-26T09:34:56.000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "update project",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/project/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"project",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update not found project",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"explain\":\"hi\",\n    \"title\":\"hi\",\n     \"minPrice\":10000000,\n     \"maxPrice\":500000000000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/project/6",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"6"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-IrupdJuP6MsqUQGPDeLuXWxO7Hg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:51:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"اپدیت پروژه با مشکل مواجه شد\",\n    \"statusCode\": 500\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"explain\":\"hi\",\n    \"title\":\"hi\",\n     \"minPrice\":10000000,\n     \"maxPrice\":500000000000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/project/2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-Omy2SIfx9vYVJhU1Sj2jG6HcOwk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:53:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"پروژه  با موفقیت اپدیت شد\"\n}"
+						},
+						{
+							"name": "bad request body",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"explain\":\"hi\",\n    \"title\":\"hi\",\n     \"maxPrice\":500000000000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/project/2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"2"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "128"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"80-Y96+TuEFKy3N8MFfUewM3Ed9lk4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:54:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"validation error\",\n    \"message\": [\n        \"لطفا حداقل قیمت پروژه خود را وارد کنید\"\n    ],\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "access deny",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"explain\":\"hi\",\n    \"title\":\"hi\",\n     \"maxPrice\":500000000000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/project/2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"2"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 08:54:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						}
+					]
+				},
+				{
+					"name": "delete project",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/project/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"project",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "not found project",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/project/6",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"6"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "83"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"53-KuxoGDj8Nxmoctj8cZY02bnU+Sg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:02:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"پروژه ای با این ایدی یافت نشد\",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/project/2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-Fs0Q0igNwcl/IgcF6y8Jp+XBWQE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:05:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"پروژه  با موفقیت حذف شد\"\n}"
+						},
+						{
+							"name": "access deny",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/project/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"1"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:05:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						}
+					]
+				},
+				{
+					"name": "set done by freelancer",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/project/done/freelancer?id=5",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"project",
+								"done",
+								"freelancer"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "access deny for a man not freelancer",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/project/done/freelancer?id=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"done",
+										"freelancer"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:30:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "success done project",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/project/done/freelancer?id=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"done",
+										"freelancer"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-Omy2SIfx9vYVJhU1Sj2jG6HcOwk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:32:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"پروژه  با موفقیت اپدیت شد\"\n}"
+						}
+					]
+				},
+				{
+					"name": "set done by employer",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "header",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiYWxsaSIsImVtYWlsIjoiYWxsaUBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiYWxsaSJ9LCJpYXQiOjE3MTExNDUwMjl9._dqyC276l1PU_N5Bw2dpqgi4ZneONkg8ileyq_g5Jdg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/project/done/employer?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"project",
+								"done",
+								"employer"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "access deny for man not employer",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/project/done/employer?id=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"done",
+										"employer"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:33:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "success done project",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/project/done/employer?id=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"done",
+										"employer"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-Omy2SIfx9vYVJhU1Sj2jG6HcOwk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:34:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"پروژه  با موفقیت اپدیت شد\"\n}"
+						}
+					]
+				}
+			],
+			"description": "این قسمت برای کراد روی پروژه هاست\n\nوقتی کارفرمایی یک پروژه ای رو اضافه میکنه پیش فرض status ان هست : pending\n\nوقتی پیشنهاد بیاد برای پروژه و کارفرما اون رو قبول کنه status به doing تغییر میکند\n\nوقتی پروژه کارش تموم شد ۲تا api هست اینجا یکی برای اینکه کارفرما بگه تموم شده و یکی دیگه برای اینکه فریلنسر بگه پروژه تموم شده , اگه هردو تایید کردن که پروژه تموم شد وضعیت پروژه به done تغییر حالت میکنه"
+		},
+		{
+			"name": "suggestion",
+			"item": [
+				{
+					"name": "add suggest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiYWxsaSIsImVtYWlsIjoiYWxsaUBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiYWxsaSJ9LCJpYXQiOjE3MTE2MzA0MjZ9.UOjpqJJikdBuBXdIUHL30FUi_oG9fvJfAahR6Wfi4EI",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "{{alli}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"price\": 150,\n    \"time\": 20,\n    \"explain\": \"a test project\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/suggest/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"suggest",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiYWxsaSIsImVtYWlsIjoiYWxsaUBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiYWxsaSJ9LCJpYXQiOjE3MTE2MzA0MjZ9.UOjpqJJikdBuBXdIUHL30FUi_oG9fvJfAahR6Wfi4EI",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"price\": 150,\n    \"time\": 20,\n    \"explain\": \"a test project\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/suggest/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"suggest",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39-OXUpse5cspp2DOMVvYZoyadmNUc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:12:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"suggest added successfully\",\n    \"statusCode\": 200\n}"
+						},
+						{
+							"name": "access deny",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiYWxsaSIsImVtYWlsIjoiYWxsaUBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiYWxsaSJ9LCJpYXQiOjE3MTE2MzA0MjZ9.UOjpqJJikdBuBXdIUHL30FUi_oG9fvJfAahR6Wfi4EI",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"price\": 150,\n    \"time\": 20,\n    \"explain\": \"a test project\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/suggest/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"suggest",
+										"1"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:15:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "bad body request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiYWxsaSIsImVtYWlsIjoiYWxsaUBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiYWxsaSJ9LCJpYXQiOjE3MTE2MzA0MjZ9.UOjpqJJikdBuBXdIUHL30FUi_oG9fvJfAahR6Wfi4EI",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"price\": 150,\n    \"explain\": \"a test project\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/suggest/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"suggest",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "123"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7b-GheTY92pK6wHnLhGUD7UZ8joucQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:16:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"validation error\",\n    \"message\": [\n        \"لطفا قیمت پیشنهادی خود را وارد کنید\"\n    ],\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "project not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiYWxsaSIsImVtYWlsIjoiYWxsaUBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiYWxsaSJ9LCJpYXQiOjE3MTE2MzA0MjZ9.UOjpqJJikdBuBXdIUHL30FUi_oG9fvJfAahR6Wfi4EI",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"price\": 150,\n    \"time\": 20,\n    \"explain\": \"a test project\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/suggest/5",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"suggest",
+										"5"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-RvbdZ6VOGpE68Ie87G3QtZKcaNo\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:17:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"پروژه مورد نظر پیدا نشد \",\n    \"statusCode\": 500\n}"
+						}
+					]
+				},
+				{
+					"name": "delete suggest",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiYWxsaSIsImVtYWlsIjoiYWxsaUBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiYWxsaSJ9LCJpYXQiOjE3MTE1NzcyMjN9.FuEsbR_awhVflrjDcJDGPJzvE1r3NCGgNu_Eug9WsNc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/suggest?id=2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"suggest"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/suggest?id=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"suggest"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-fwlglzoflEtqdJb08ggZF03GUAE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:11:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"پیشنهاد  با موفقیت حذف شد\"\n}"
+						},
+						{
+							"name": "access deny",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/suggest?id=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"suggest"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:14:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "not found suggest",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/suggest?id=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"suggest"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "84"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"54-fHSme3B3ldTVgVsJ/5JWNyy1+68\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:15:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"همچین پیشنهادی ای وجود ندارد \",\n    \"statusCode\": 404\n}"
+						}
+					]
+				},
+				{
+					"name": "get suggests",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{alli}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/suggest?projectId=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"suggest"
+							],
+							"query": [
+								{
+									"key": "projectId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/suggest?projectId=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"suggest"
+									],
+									"query": [
+										{
+											"key": "projectId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "239"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ef-9A9+COEj3I8JubmD5dZGBdyvtVo\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:11:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"suggests\": [\n        {\n            \"id\": 1,\n            \"price\": 150,\n            \"time\": 20,\n            \"explain\": \"a test project\",\n            \"status\": false,\n            \"createdAt\": \"2024-04-26T09:10:04.000Z\",\n            \"updatedAt\": \"2024-04-26T09:10:04.000Z\",\n            \"projectId\": 1,\n            \"employer_username\": \"mohammad\",\n            \"freelancer_username\": \"alli\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "update suggest",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiYWxsaSIsImVtYWlsIjoiYWxsaUBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiYWxsaSJ9LCJpYXQiOjE3MTE1NzcyMjN9.FuEsbR_awhVflrjDcJDGPJzvE1r3NCGgNu_Eug9WsNc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/suggest?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"suggest"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "not found suggest",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"price\":500,\n    \"time\":200,\n    \"explain\":\"a programmer project\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/suggest?id=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"suggest"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-NsPzPCZDMj0poKL+V1owBIplcVE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:13:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"پیشنهاد پیدا نشد \",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "access deny",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"price\":500,\n    \"time\":200,\n    \"explain\":\"a programmer project\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/suggest?id=2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"suggest"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:14:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"price\":500,\n    \"time\":200,\n    \"explain\":\"a programmer project\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/suggest?id=2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"suggest"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f-K+4/R1wBh5yME2fwzIE0ZrWyaS4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:14:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"پیشنهاد  با موفقیت اپدیت شد\"\n}"
+						},
+						{
+							"name": "bad request body",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"price\":500,\n    \"explain\":\"a programmer project\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/suggest?id=2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"suggest"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "123"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7b-GheTY92pK6wHnLhGUD7UZ8joucQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:14:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"validation error\",\n    \"message\": [\n        \"لطفا قیمت پیشنهادی خود را وارد کنید\"\n    ],\n    \"statusCode\": 400\n}"
+						}
+					]
+				},
+				{
+					"name": "accept suggest",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/suggest?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"suggest"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "access deny",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/suggest?id=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"suggest"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:19:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "not found suggset",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/suggest?id=5",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"suggest"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-NsPzPCZDMj0poKL+V1owBIplcVE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:21:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"پیشنهاد پیدا نشد \",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/suggest?id=2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"suggest"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3d-GMVksforffmAZAsQkoeOgQj8pHo\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 09:22:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"پیشنهاد  با موفقیت قبول شد\"\n}"
+						}
+					]
+				}
+			],
+			"description": "این قسمت برای کراد پیشنهاد است روی پروژه\n\nیک api هم میباشد برای اینکه کارفرما یک پیشنهاد رو قبول کنه\n\nبا قبول کردن پیشنهاد وضعیت پروژه از pending به doing تبدیل میشود"
+		},
+		{
+			"name": "message",
+			"item": [
+				{
+					"name": "add message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{alli}}s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\":\"hello mohammad i am alli\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/message/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"message",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "access deny for user that not freelancer or employer of suggest",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{reza}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"message\":\"hello mohammad i am alli\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/message/3",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"message",
+										"3"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-SB1q5mgK6d2WTQU83FNR9bZjMbs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 20:56:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 500\n}"
+						},
+						{
+							"name": "not found suggest",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"message\":\"hello mohammad i am alli\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/message/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"message",
+										"1"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "78"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4e-ctgC8pM0wc/hrTX5Wpu1Mad+cIs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 20:57:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"پیشنهاد مورد نظر پیدا نشد \",\n    \"statusCode\": 500\n}"
+						},
+						{
+							"name": "bad request body",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/message/3",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"message",
+										"3"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "107"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6b-tLlF61A36w7+lWV7AxyLx0/7FMc\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 20:57:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"validation error\",\n    \"message\": [\n        \"لطفا پیام خود را وارد کنید \"\n    ],\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"message\":\"hello mohammad i am alli\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/message/4",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"message",
+										"4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39-PthFzYDQ/E2JONIsi5N7etnmth0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 20:59:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"message added successfully\",\n    \"statusCode\": 200\n}"
+						}
+					]
+				},
+				{
+					"name": "update message",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{alli}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\":\"hello mohammad i am alli\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/message/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"message",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "access deny",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{reza}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"message\":\"hello mohammad i am oooooooooooo \"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/message/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"message",
+										"1"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:07:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "bad request body",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/message/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"message",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "107"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6b-tLlF61A36w7+lWV7AxyLx0/7FMc\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:07:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"validation error\",\n    \"message\": [\n        \"لطفا پیام خود را وارد کنید \"\n    ],\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"message\":\"hello mohammad i am oooooooooooo \"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/message/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"message",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"40-E+WCKXaZ19vwvT94BQ/Bnlu+txM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:07:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"پیام شما  با موفقیت اپدیت شد\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get message",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/message/?projectId=3",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"message",
+										""
+									],
+									"query": [
+										{
+											"key": "projectId",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "324"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"144-Nl6siG8NFOdOBzbK1aHdS7RjI5o\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:01:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"messages\": [\n        {\n            \"id\": 1,\n            \"message\": \"hello mohammad i am alli\",\n            \"owner\": \"alli\",\n            \"createdAt\": \"2024-04-28T20:58:49.000Z\",\n            \"updatedAt\": \"2024-04-28T20:58:49.000Z\",\n            \"suggestId\": 4\n        },\n        {\n            \"id\": 2,\n            \"message\": \"hello mohammad i am alli\",\n            \"owner\": \"mohammad\",\n            \"createdAt\": \"2024-04-28T20:59:27.000Z\",\n            \"updatedAt\": \"2024-04-28T20:59:27.000Z\",\n            \"suggestId\": 4\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "delete message",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/message/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"message",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "access deny",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{reza}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/message/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"message",
+										"1"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:10:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/message/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"message",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c-EplNv2xHjYCBkOlr0/Tzyj2gL8g\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:11:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"پیام شما  با موفقیت حذف شد\"\n}"
+						}
+					]
+				}
+			],
+			"description": "این قسمت برای فرستادن پیام میباشد .\n\nفریلنسر یا کارفرما با ایدی پیشنهاد خود میتونن عملایت کراد رو برای پیام انجام بدهند"
+		},
+		{
+			"name": "skills",
+			"item": [
+				{
+					"name": "get skill",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/skill/js",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"skill",
+								"js"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/skill/nodejs",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"skill",
+										"nodejs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "115"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"73-ZBP0iNScnlowwnh56qb9Q4IDBMw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:49:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"skills\": [\n        {\n            \"id\": 3,\n            \"name\": \"nodejs\",\n            \"createdAt\": \"2024-04-28T21:49:20.000Z\",\n            \"updatedAt\": \"2024-04-28T21:49:20.000Z\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "not found request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/skill/nodejsd",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"skill",
+										"nodejsd"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "13"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d-qLemwstW4/zzMk7JxjTDJUaT0JU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:49:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"skills\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "add skill",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/skill",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"skill"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "access deny",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"nodejs\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/skill",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"skill"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:14:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "bad request body",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{reza}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/skill",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"skill"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6d-hU7iEsbYVdKZ1Sr9xEsyCl2KQ28\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:46:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"validation error\",\n    \"message\": [\n        \"لطفا نام مهارت را وارد کنید \"\n    ],\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "bad request : insert found skill",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{reza}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"nodejs\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/skill",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"skill"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-QwyWjth6uJ8hKEO9YRQJAMyfv7E\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:46:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"مهارت تکراری است \",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{reza}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"nodejs\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/skill",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"skill"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-dgld9pYwNOKUPk9cywLPSuPTNag\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:49:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"skill added successfully\",\n    \"statusCode\": 200\n}"
+						}
+					]
+				},
+				{
+					"name": "update skill",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/skill/js",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"skill",
+								"js"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "access deny",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"node\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/skill/nodejse",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"skill",
+										"nodejse"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:50:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "bad request body",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{reza}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/skill/nodejse",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"skill",
+										"nodejse"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6d-hU7iEsbYVdKZ1Sr9xEsyCl2KQ28\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:51:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"validation error\",\n    \"message\": [\n        \"لطفا نام مهارت را وارد کنید \"\n    ],\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "bad request : not found skill",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{reza}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"node\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/skill/nodejse",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"skill",
+										"nodejse"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3a-wxsN4R/on+SeogBtl+VaHMIT+VQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:51:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"مهارت پیدا نشد \",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "bad request : new skill is found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{reza}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"node\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/skill/nodejs",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"skill",
+										"nodejs"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-QwyWjth6uJ8hKEO9YRQJAMyfv7E\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:52:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"مهارت تکراری است \",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{reza}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"js\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/skill/nodejs",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"skill",
+										"nodejs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-/Y+ZDYVQWNyN6n0QcfIHzGaeXkM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:53:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"مهارت  با موفقیت اپدیت شد\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete skill",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/skill/js",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"skill",
+								"js"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "access deny",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/skill/nodejs",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"skill",
+										"nodejs"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:48:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "bad request :not found skill",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{reza}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/skill/nodejse",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"skill",
+										"nodejse"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "76"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4c-hm+pqp71ayUAHPnuXTnmUHQOxgw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:48:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"همچین مهارتی  وجود ندارد \",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{reza}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/skill/nodejs",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"skill",
+										"nodejs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-aqFcmawmCuGgq3gX+Y0T3rrVNPk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 21:49:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"مهارت  با موفقیت حذف شد\"\n}"
+						}
+					]
+				}
+			],
+			"description": "این قسمت برای کراد لیبل های مهارت ها میباشد\n\nکه از این مهارت ها میتوانند پروژه ها یا کاربران استفاده کنند\n\nنکته: کراد این قسمت به جز قسمت گت کردن فقط برای ادمین قابل دسترس میباشد"
+		},
+		{
+			"name": "user skill",
+			"item": [
+				{
+					"name": "add user skill",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{mohammad}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"skills\":[\"nodejs\",\"php\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/userSkill",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"userSkill"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "bad request : not found skill",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"skills\":[\"nodejs\",\"php\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/userSkill/?username=mohammad",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"userSkill",
+										""
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "mohammad"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3a-mG2sHfDXuAa4bdMUXX/cBwpG1js\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 22:17:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"مهارت پیدا نشد \",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"skills\":[\"nodejs\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/userSkill/?username=mohammad",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"userSkill",
+										""
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "mohammad"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-dgld9pYwNOKUPk9cywLPSuPTNag\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 22:19:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"skill added successfully\",\n    \"statusCode\": 200\n}"
+						}
+					]
+				},
+				{
+					"name": "get user skill",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/userSkill/?username=mohammad",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"userSkill",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "mohammad"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/userSkill/?username=mohammad",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"userSkill",
+										""
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "mohammad"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "142"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8e-u6mN+pAB9Iq8y5RSuBOuFP19/kE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 22:20:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userSkills\": [\n        {\n            \"id\": 1,\n            \"createdAt\": \"2024-04-28T22:19:52.000Z\",\n            \"updatedAt\": \"2024-04-28T22:19:52.000Z\",\n            \"skill\": \"nodejs\",\n            \"username\": \"mohammad\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "update user skill",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{mohammad}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"skill\":\"nodejs\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/userSkill",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"userSkill"
+							],
+							"query": [
+								{
+									"key": "skill",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "access deny",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"skill\":\"nodejs\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/userSkill",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"userSkill"
+									],
+									"query": [
+										{
+											"key": "skill",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 22:21:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "bad request body",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/userSkill",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"userSkill"
+									],
+									"query": [
+										{
+											"key": "skill",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6d-hU7iEsbYVdKZ1Sr9xEsyCl2KQ28\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 22:23:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"validation error\",\n    \"message\": [\n        \"لطفا نام مهارت را وارد کنید \"\n    ],\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"skills\":[\"nodejs\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/userSkill",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"userSkill"
+									],
+									"query": [
+										{
+											"key": "skill",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-/Y+ZDYVQWNyN6n0QcfIHzGaeXkM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 22:23:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"مهارت  با موفقیت اپدیت شد\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete user skill",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/userSkill/?username=mohammad",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"userSkill",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "mohammad"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/userSkill",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"userSkill"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "mohammad",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-aqFcmawmCuGgq3gX+Y0T3rrVNPk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 22:28:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"مهارت  با موفقیت حذف شد\"\n}"
+						},
+						{
+							"name": "bad request : not found any skills",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/userSkill",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"userSkill"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "mohammad",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "66"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"42-Xc1G/Vs36XT0slxlPzIWda+dnHU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 22:28:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \" مهارتی  وجود ندارد \",\n    \"statusCode\": 404\n}"
+						}
+					]
+				}
+			],
+			"description": "این قسمت کراده مهارت های هر فرد است که میتوانند از مهارت های تعریف شده باشند"
+		},
+		{
+			"name": "project skill",
+			"item": [
+				{
+					"name": "get project skill",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projectSkill?projectId=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projectSkill"
+							],
+							"query": [
+								{
+									"key": "projectId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/projectSkill?projectId=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projectSkill"
+									],
+									"query": [
+										{
+											"key": "projectId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "248"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f8-AIS++zNBlBYY/n7ckCqM+8k23GU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 29 Apr 2024 21:28:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"projectSkills\": [\n        {\n            \"id\": 6,\n            \"createdAt\": \"2024-04-25T11:22:07.000Z\",\n            \"updatedAt\": \"2024-04-25T11:22:07.000Z\",\n            \"skill\": null,\n            \"projectId\": 1\n        },\n        {\n            \"id\": 7,\n            \"createdAt\": \"2024-04-25T11:22:07.000Z\",\n            \"updatedAt\": \"2024-04-25T11:22:07.000Z\",\n            \"skill\": \"php\",\n            \"projectId\": 1\n        }\n    ]\n}"
+						},
+						{
+							"name": "bad request if not found project",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/projectSkill?projectId=18",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projectSkill"
+									],
+									"query": [
+										{
+											"key": "projectId",
+											"value": "18"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "20"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"14-LpgF3eanpHYSYm3Wdxcp7g8v4t8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 29 Apr 2024 21:28:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"projectSkills\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "add project skill",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{mohammad}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"skills\":[\"nodejs\",\"php\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/projectSkill/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projectSkill",
+								"1"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "bad request if skill is found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"skills\":[\"nodejs\",\"php\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/projectSkill/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projectSkill",
+										"1"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-QwyWjth6uJ8hKEO9YRQJAMyfv7E\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Apr 2024 22:30:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"مهارت تکراری است \",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"skills\":[\"nodejs\",\"php\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/projectSkill/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projectSkill",
+										"1"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-dgld9pYwNOKUPk9cywLPSuPTNag\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 29 Apr 2024 21:34:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"skill added successfully\",\n    \"statusCode\": 200\n}"
+						}
+					]
+				},
+				{
+					"name": "update project skill",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{mohammad}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"skills\":[\"nodejs\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/projectSkill/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projectSkill",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success deny",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"skills\":[\"nodejs\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/projectSkill/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projectSkill",
+										"1"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 29 Apr 2024 21:36:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "bad request : not found project",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"skills\":[\"nodejs\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/projectSkill/100",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projectSkill",
+										"100"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "76"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4c-2DRY0nTScaD/foKWQuQfcy3BZto\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 29 Apr 2024 21:37:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"پروژه مورد نظر پیدا نشد \",\n    \"statusCode\": \"404\"\n}"
+						},
+						{
+							"name": "bad request body",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/projectSkill/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projectSkill",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6d-hU7iEsbYVdKZ1Sr9xEsyCl2KQ28\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 29 Apr 2024 21:37:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"validation error\",\n    \"message\": [\n        \"لطفا نام مهارت را وارد کنید \"\n    ],\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "bad request : not found skill",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"skills\":[\"nodejs\",\"ddd\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/projectSkill/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projectSkill",
+										"1"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3a-mG2sHfDXuAa4bdMUXX/cBwpG1js\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 29 Apr 2024 21:38:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"مهارت پیدا نشد \",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"skills\":[\"nodejs\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/projectSkill/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projectSkill",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-/Y+ZDYVQWNyN6n0QcfIHzGaeXkM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 29 Apr 2024 21:38:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"مهارت  با موفقیت اپدیت شد\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete project skill",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{mohammad}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/projectSkill/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projectSkill",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "access deny",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{alli}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/projectSkill/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projectSkill",
+										"1"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Y1utPlM2UozNr/ZuCvugQBFc1/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 29 Apr 2024 21:30:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"access denied this user\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "success request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{mohammad}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/projectSkill/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projectSkill",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-aqFcmawmCuGgq3gX+Y0T3rrVNPk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 29 Apr 2024 21:34:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"مهارت  با موفقیت حذف شد\"\n}"
+						}
+					]
+				}
+			],
+			"description": "این قسمت کراده مهارت های هر پروژه است که میتوانند از مهارت های تعریف شده باشند"
+		},
+		{
+			"name": "captcha",
+			"item": [
+				{
+					"name": "get captcha",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/captcha",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"captcha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "varify captcha",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "token"
+		}
+	]
+}
