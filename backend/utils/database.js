@@ -1,7 +1,10 @@
+const dotEnv=require('dotenv');
 const {errorCreator}=require('./error')
 const { Sequelize } =require('sequelize');
 const logger = require("./logger");
-const sequelize = new Sequelize("parsLancer", "mohammad", "09944985072", {
+dotEnv.config({ path: "./config/config.env" });
+
+const sequelize = new Sequelize(process.env.DBName, process.env.DBUsername, process.env.DBPassword, {
     dialect: "mysql",
     host: "localhost",
   });
