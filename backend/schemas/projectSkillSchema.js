@@ -6,7 +6,7 @@ module.exports.addProjectSkillSchema = {
     required: ["skills"],
     additionalProperties: false,
     errorMessage: {
-        type: "should be an object",
+        type: "should be an array",
         required: {
             skills: "لطفا نام مهارت را وارد کنید "
         },

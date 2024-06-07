@@ -22,7 +22,7 @@ module.exports.addProjectSkill = async (req, res, next) => {
         if (!project[0]) {
             throw { message: "پروژه مورد نظر پیدا نشد ", statusCode: "404", data: "project not found" }
         }
-        if(project[0].employer_username!=req.user.username)throw "access denied"
+        if(project[0].employer_username!=req.user.username &&req.user.role!='admin')throw "access denied"
         const { skills } = req.body;
 
         for (let skill of skills) {

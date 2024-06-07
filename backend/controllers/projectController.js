@@ -23,9 +23,11 @@ module.exports.addProject = async (req, res, next) => {
     });
 
     console.log(result);
+    console.log(result.id);
+
     res
       .status(200)
-      .json({ message: "project added successfully", statusCode: 200 });
+      .json({ projectId: result.id, statusCode: 200 });
   } catch (err) {
     console.log(err);
     next({ message: "اضافه کردن پروژه با مشکل مواجه شد", data: err });

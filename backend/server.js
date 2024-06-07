@@ -10,9 +10,11 @@ const dotEnv = require('dotenv');
 const Redis = require("ioredis");
 const redisModel=require("./models/redis")
 const shared=require('./utils/shared')
+var cors = require('cors')
+
 dotEnv.config({ path: "./config/config.env" });
 
-
+app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
