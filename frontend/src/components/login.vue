@@ -35,7 +35,7 @@
 /* eslint-disable */
 import axios from 'axios'
 import Cookies from 'js-cookie';
-
+import { setSession } from '../utils/sessionUtils'
 export default {
     name: "login",
     data() {
@@ -93,6 +93,8 @@ export default {
                 console.log(token)
 
                 Cookies.set('token', token, { expires: 7 });
+                Cookies.set('username', this.form.username, { expires: 7 });
+                setSession(token, { username: this.form.username },10080)
                 this.showMsgBoxTwo()
 
             } catch (error) {
