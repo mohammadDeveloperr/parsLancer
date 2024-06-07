@@ -1,16 +1,61 @@
 <template>
-    <div>
-  
-  
-      <!-- Hero Section with Animated Background -->
-      <div class="hero-section">
-        <div class="hero-content">
-          <h1 class="display-4 mb-4">Welcome to Our Platform</h1>
-          <p class="lead">Find skilled freelancers or post your projects with ease.</p>
-          <b-button variant="primary" size="lg" href="/register">Get Started</b-button>
-        </div>
-      </div>
-  
+  <div>
+ 
+    <!-- Hero Section -->
+    <b-container fluid class="hero-section text-white text-center hero-content">
+      <b-row>
+        <b-col class="mt-5">
+          <h1 class="display-4 font-weight-bold mt-3">اتصال فریلنسرهای برتر با کارفرمایان پیشرو</h1>
+          <p class="lead mt-5 pt-5 pb-4">بهترین استعدادها را برای پروژه خود یا شغل آزاد رویایی خود پیدا کنید.</p>
+          <b-button variant="success" size="lg" class="mr-3 mt-5">استخدام بهترین فریلنسر ها</b-button>
+          <b-button variant="warning" size="lg" class="mt-5">کسب درامد از فریلنسینگ</b-button>
+        </b-col>
+      </b-row>
+    </b-container>
+    <!-- How It Works Section -->
+    <b-container fluid class="how-it-works py-5 bg-light">
+      <b-row>
+        <b-col class="text-center mb-5">
+          <h2 class="display-4">پارسلنسر چگونه کار میکند</h2>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col md="4" class="text-center ">
+          <b-icon icon="person-plus" font-scale="4" variant="primary"></b-icon>
+          <h3 class="mt-2">ثبت نام</h3>
+          <p>اکانت خود را به سادگی بسازید</p>
+        </b-col>
+        <b-col md="4" class="text-center">
+          <b-icon icon="search" font-scale="4" variant="primary"></b-icon>
+          <!-- <b-icon icon="pencil" font-scale="4" variant="success"></b-icon> -->
+          <h3 class="mt-2">ارسال یا یافتن پروژه ها</h3>
+          <p>کارفرمایان پروژه ها را پست می کنند، فریلنسرها برای آنها پیشنهاد می دهند</p>
+        </b-col>
+        <b-col md="4" class="text-center">
+          <b-icon icon="currency-dollar" font-scale="4" variant="primary"></b-icon>
+          <h3 class="mt-2">کار را انجام دهید</h3>
+          <p>همکاری کنید، پروژه ها را تکمیل کنید و پول دریافت کنید.</p>
+        </b-col>
+      </b-row>
+    </b-container>
+
+    <!-- Categories Section -->
+    <b-container fluid class="categories-section py-5">
+      <b-row>
+        <b-col class="text-center mb-5">
+          <h2 class="display-4">Job Categories</h2>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col md="4" v-for="category in categories" :key="category.id" class="text-center mb-3">
+          <b-card :bg-variant="category.color" text-variant="white" class="category-card">
+            <b-card-text>{{ category.name }}</b-card-text>
+          </b-card>
+        </b-col>
+      </b-row>
+    </b-container>
+
+    
       <!-- Features Section with Cards -->
       <section id="features" class="py-5">
         <div class="container">
@@ -46,159 +91,106 @@
           </div>
         </div>
       </section>
-  
-      <!-- How It Works Section with Steps -->
-      <section id="how-it-works" class="py-5 bg-light">
-        <div class="container">
-          <h2 class="text-center mb-5">How It Works</h2>
-          <div class="row">
-            <div class="col-md-4 mb-4">
-              <div class="step">
-                <b-icon icon="pencil-square" font-scale="3" variant="primary"></b-icon>
-                <h3>Create an Account</h3>
-                <p>Sign up as a freelancer or employer.</p>
-              </div>
-            </div>
-            <div class="col-md-4 mb-4">
-              <div class="step">
-                <b-icon icon="search" font-scale="3" variant="primary"></b-icon>
-                <h3>Post or Find Projects</h3>
-                <p>Employers post projects, freelancers bid on them.</p>
-              </div>
-            </div>
-            <div class="col-md-4 mb-4">
-              <div class="step">
-                <b-icon icon="currency-dollar" font-scale="3" variant="primary"></b-icon>
-                <h3>Get Work Done</h3>
-                <p>Collaborate, complete projects, and get paid.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-  
-      <!-- Testimonials Section with Carousel -->
-      <section id="testimonials" class="py-5">
-        <div class="container">
-          <h2 class="text-center mb-5">Testimonials</h2>
-          <b-carousel id="testimonial-carousel" v-model="testimonialSlide" :interval="5000" background="#f5f5f5">
-            <b-carousel-slide v-for="(testimonial, index) in testimonials" :key="index">
-              <blockquote class="blockquote">
-                <p class="mb-0">{{ testimonial.quote }}</p>
-                <footer class="blockquote-footer">{{ testimonial.author }}</footer>
-              </blockquote>
-            </b-carousel-slide>
-          </b-carousel>
-        </div>
-      </section>
-  
-      <!-- Contact Section with Form -->
-      <section id="contact" class="py-5 bg-light">
-        <div class="container">
-          <h2 class="text-center mb-5">Contact Us</h2>
-          <p class="text-center">If you have any questions, feel free to reach out to us!</p>
-          <b-form @submit.prevent="submitContactForm" class="mt-4">
-            <b-row>
-              <b-col md="6" offset-md="3">
-                <b-form-group label="Name">
-                  <b-form-input v-model="contactForm.name" required></b-form-input>
-                </b-form-group>
-                <b-form-group label="Email">
-                  <b-form-input type="email" v-model="contactForm.email" required></b-form-input>
-                </b-form-group>
-                <b-form-group label="Message">
-                  <b-form-textarea v-model="contactForm.message" rows="5" required></b-form-textarea>
-                </b-form-group>
-                <b-button type="submit" variant="primary" class="btn-block">Submit</b-button>
-              </b-col>
-            </b-row>
-          </b-form>
-        </div>
-      </section>
-  
-      <!-- Footer -->
-      <b-footer class="bg-dark text-white text-center py-3 mt-5">
-        <p>&copy; 2024 Freelancer & Employer Platform. All rights reserved.</p>
-      </b-footer>
-    </div>
-  </template>
-  
-  <script>
-  /* eslint-disable */
 
-  export default {
-    name:"home",
+        <!-- Call to Action Section -->
+    <b-container fluid class="cta-section text-white text-center py-5">
+      <b-row>
+        <b-col>
+          <h2 class="display-4 font-weight-bold mb-3"> ! امروز به انجمن ما بپیوندید </h2>
+          <p class="lead mb-4">اکنون ثبت نام کنید و با فریلنسرها و کارفرمایان برتر ارتباط برقرار کنید</p>
+          <b-button variant="success" size="lg" class="mr-3">ثبت نام</b-button>
+          <b-button variant="warning" size="lg">بیشتر بدانید</b-button>
+        </b-col>
+      </b-row>
+    </b-container>
 
-    data() {
-      return {
-        testimonialSlide: 0,
-        testimonials: [
-          {
-            quote: 'This platform helped me find the best freelancers for my projects.',
-            author: 'John Doe, CEO'
-          },
-          {
-            quote: 'As a freelancer, I found amazing clients and projects here.',
-            author: 'Jane Smith, Freelancer'
-          },
-          {
-            quote: 'Great user experience and reliable service.',
-            author: 'Sam Wilson, Project Manager'
-          }
-        ],
-        contactForm: {
-          name: '',
-          email: '',
-          message: ''
-        }
-      };
-    },
-    methods: {
-      submitContactForm() {
-        // Handle contact form submission
-        console.log('Contact form submitted:', this.contactForm);
-        alert('Thank you for reaching out!');
-        this.contactForm.name = '';
-        this.contactForm.email = '';
-        this.contactForm.message = '';
-      }
-    }
-  };
-  </script>
+    <!-- Testimonials Section -->
+    <b-container fluid class="testimonials py-5 bg-light">
+      <b-row>
+        <b-col class="text-center mb-5">
+          <h2 class="display-4">Testimonials</h2>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col md="4" v-for="testimonial in testimonials" :key="testimonial.id" class="text-center mb-3">
+          <b-card>
+            <b-card-text>
+              <p>"{{ testimonial.quote }}"</p>
+              <b-icon icon="star-fill" font-scale="1.5" v-for="n in testimonial.rating" :key="n"></b-icon>
+              <p class="mt-2">- {{ testimonial.name }}</p>
+            </b-card-text>
+          </b-card>
+        </b-col>
+      </b-row>
+    </b-container>
+
   
-  <style scoped>
-  .hero-section {
-    background: linear-gradient(to right, #3aafd0, #3aafa9);
-    color: white;
-    text-align: center;
-    padding: 100px 0;
-  }
-  
-  .hero-content {
-    max-width: 600px;
+
+    <!-- Footer -->
+    <b-footer class="footer bg-primary text-white text-center py-3">
+      &copy; {{ new Date().getFullYear() }} Freelancer Platform
+    </b-footer>
+  </div>
+</template>
+
+<script>
+/* eslint-disable */
+
+export default {
+  name: 'Home',
+  data() {
+    return {
+      featuredItems: [
+        { id: 1, title: 'Success Story 1', description: 'Description of success story 1', image: 'https://via.placeholder.com/800x400' },
+        { id: 2, title: 'Success Story 2', description: 'Description of success story 2', image: 'https://via.placeholder.com/800x400' },
+        { id: 3, title: 'Success Story 3', description: 'Description of success story 3', image: 'https://via.placeholder.com/800x400' },
+      ],
+      categories: [
+        { id: 1, name: 'Design', color: 'danger' },
+        { id: 2, name: 'Writing', color: 'primary' },
+        { id: 3, name: 'Programming', color: 'success' },
+      ],
+      testimonials: [
+        { id: 1, quote: 'Great platform!', rating: 5, name: 'User 1' },
+        { id: 2, quote: 'Found my dream job here!', rating: 4, name: 'User 2' },
+        { id: 3, quote: 'Highly recommend!', rating: 5, name: 'User 3' },
+      ],
+    };
+  },
+};
+</script>
+
+<style scoped>
+.hero-section {
+  background: linear-gradient(45deg, #42a5f5, #ab47bc);
+  color: white;
+  padding: 100px 0;
+}
+.hero-content {
+  height: 600px;
     margin: 0 auto;
+    max-height: 800px;
   }
-  
-  .step {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .step b-icon {
-    margin-bottom: 20px;
-  }
-  
-  .card-title {
-    margin-top: 15px;
-  }
-  
-  blockquote {
-    font-size: 1.5rem;
-  }
-  
-  blockquote-footer {
-    font-size: 1.2rem;
-    color: #6c757d;
-  }
-  </style>
-  
+.featured-section {
+  margin: 50px 0;
+}
+.how-it-works {
+  background: #f5f5f5;
+  padding: 50px 0;
+}
+.categories-section {
+  padding: 50px 0;
+}
+.category-card {
+  height: 150px;
+}
+.testimonials {
+  background: #e0e0e0;
+  padding: 50px 0;
+}
+.cta-section {
+  background: linear-gradient(45deg, #f57c00, #fbc02d);
+  color: white;
+  padding: 50px 0;
+}
+</style>

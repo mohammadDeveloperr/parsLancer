@@ -16,9 +16,8 @@
                         <div class="collapse navbar-collapse" id="navigation">
                             <ul class="navbar-nav navbar-nav-hover mx-auto">
                                 <li class="nav-item px-3">
-                                    <a class="nav-link">
-                                        Pages
-                                    </a>
+                                    <router-link  class="nav-link text-dark" to="/project" > پروژه ها </router-link>
+
                                 </li>
 
                                 <li class="nav-item px-3">
@@ -45,6 +44,7 @@
 
                                     <router-link  class="mb-5 text-dark" to="/login" > ورود <b-icon-person-circle ></b-icon-person-circle></router-link>
                                 </li>
+                                
                               
 
                             </ul>
