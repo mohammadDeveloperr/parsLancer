@@ -1,21 +1,6 @@
 <template>
     <div id="projectPage">
-        <!-- Search Box -->
-        <b-container fluid class="search-box py-3 bg-light mb-4 mt-5" dir="rtl">
-            <b-row justify="center">
-                <b-col lg="6" md="8">
-                    <b-form @submit.prevent="searchProjects">
-                        <b-input-group>
-                            <b-form-input v-model="searchQuery" placeholder="Search projects..."
-                                class="form-control-lg"></b-form-input>
-                            <b-input-group-append>
-                                <b-button type="submit" variant="primary">Search</b-button>
-                            </b-input-group-append>
-                        </b-input-group>
-                    </b-form>
-                </b-col>
-            </b-row>
-        </b-container>
+     
         <!-- Project List -->
         <b-container fluid class="project-list my-5">
             <b-row justify="center">

@@ -60,11 +60,7 @@
                                                 <i class="fas fa-user"></i> حساب کاربری
                                             </router-link>
                                         </b-dropdown-item>
-                                        <b-dropdown-item  class="text-right">
-                                            <router-link to="/dashboard" class="text-dark">
-                                                <i class="fas fa-tachometer-alt"></i> داشبورد
-                                            </router-link>
-                                        </b-dropdown-item>
+                               
 
                                         <b-dropdown-divider></b-dropdown-divider>
                                         <b-dropdown-item @click="logout" class="text-right">

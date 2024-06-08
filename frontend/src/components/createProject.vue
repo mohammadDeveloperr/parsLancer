@@ -1,57 +1,61 @@
 <template>
-    <div class="create-project-page mt-5">
-        <b-container fluid class="mt-5 text-right">
-            <b-row class="mt-5">
-                <b-col md="8" class="mx-auto">
-                    <b-card no-body>
-                        <b-tabs pills card>
-                            <b-tab title="اطلاعات پروژه" active>
-                                <b-card-body>
-                                    <h3 class="text-primary">ساخت پروژه جدید</h3>
-                                    <b-form @submit.prevent="submitProject">
-                                        <b-form-group label="تیتر پروژه" label-for="project-title">
-                                            <b-form-input id="project-title" v-model="project.title"
-                                                required></b-form-input>
-                                        </b-form-group>
+    <div>
+        <sidebar></sidebar>
 
-                                        <b-form-group label="توضیحات پروژه" label-for="project-explain">
-                                            <b-form-textarea id="project-description" v-model="project.explain"
-                                                rows="4" required></b-form-textarea>
-                                        </b-form-group>
-
-                                        <b-form-group label="مهارت های مورد نیاز" label-for="skills">
-                                            <b-form-tags v-model="skills" id="skills"
-                                                placeholder="Add a skill..."></b-form-tags>
-                                        </b-form-group>
-
-                                        <b-form-group label="بودجه (ریال)">
-                                            <b-form-row>
-                                                <b-col>
-                                                    <b-form-input type="number" v-model="project.minPrice"
-                                                        placeholder="حداقل" class="text-right" required></b-form-input>
-                                                </b-col>
-                                                <b-col>
-                                                    <b-form-input type="number" v-model="project.maxPrice"
-                                                        placeholder="حداکثر" class="text-right" required></b-form-input>
-                                                </b-col>
-                                            </b-form-row>
-                                        </b-form-group>
-
-
-
-                                        <b-button type="submit" variant="primary">اضافه کردن پروژه</b-button>
-                                        <div v-if="errorMessage" class="mt-3 text-center text-danger">
-                                            {{ errorMessage }}
-                                        </div>
-                                    </b-form>
-                                </b-card-body>
-                            </b-tab>
-
-                        </b-tabs>
-                    </b-card>
-                </b-col>
-            </b-row>
-        </b-container>
+        <div class="create-project-page mt-5">
+            <b-container fluid class="mt-5 text-right">
+                <b-row class="mt-5">
+                    <b-col md="8" class="mx-auto">
+                        <b-card no-body>
+                            <b-tabs pills card>
+                                <b-tab title="اطلاعات پروژه" active>
+                                    <b-card-body>
+                                        <h3 class="text-primary">ساخت پروژه جدید</h3>
+                                        <b-form @submit.prevent="submitProject">
+                                            <b-form-group label="تیتر پروژه" label-for="project-title">
+                                                <b-form-input id="project-title" v-model="project.title"
+                                                    required></b-form-input>
+                                            </b-form-group>
+    
+                                            <b-form-group label="توضیحات پروژه" label-for="project-explain">
+                                                <b-form-textarea id="project-description" v-model="project.explain" rows="4"
+                                                    required></b-form-textarea>
+                                            </b-form-group>
+    
+                                            <b-form-group label="مهارت های مورد نیاز" label-for="skills">
+                                                <b-form-tags v-model="skills" id="skills"
+                                                    placeholder="Add a skill..."></b-form-tags>
+                                            </b-form-group>
+    
+                                            <b-form-group label="بودجه (ریال)">
+                                                <b-form-row>
+                                                    <b-col>
+                                                        <b-form-input type="number" v-model="project.minPrice"
+                                                            placeholder="حداقل" class="text-right" required></b-form-input>
+                                                    </b-col>
+                                                    <b-col>
+                                                        <b-form-input type="number" v-model="project.maxPrice"
+                                                            placeholder="حداکثر" class="text-right" required></b-form-input>
+                                                    </b-col>
+                                                </b-form-row>
+                                            </b-form-group>
+    
+    
+    
+                                            <b-button type="submit" variant="primary">اضافه کردن پروژه</b-button>
+                                            <div v-if="errorMessage" class="mt-3 text-center text-danger">
+                                                {{ errorMessage }}
+                                            </div>
+                                        </b-form>
+                                    </b-card-body>
+                                </b-tab>
+    
+                            </b-tabs>
+                        </b-card>
+                    </b-col>
+                </b-row>
+            </b-container>
+        </div>
     </div>
 </template>
 
@@ -60,6 +64,7 @@
 
 import axios from 'axios'
 import Cookies from 'js-cookie';
+import Sidebar from './sideBar.vue';
 
 export default {
     data() {
@@ -78,10 +83,12 @@ export default {
                 { value: 'one-time', text: 'One-time Project' },
                 { value: 'ongoing', text: 'Ongoing Project' }
             ],
-            token:Cookies.get('token'),
-            projectId:''
+            token: Cookies.get('token'),
+            projectId: ''
 
         };
+    },components: {
+        Sidebar
     },
     methods: {
         showMsgBoxTwo(message) {
@@ -104,19 +111,20 @@ export default {
                     // An error occurred
                 })
         },
-       async submitProject() {
-        console.log("skills is ")
-        console.log(this.skills)
-        console.log(typeof this.skills)
-        this.project.minPrice=parseInt(this.project.minPrice)
-        this.project.maxPrice=parseInt(this.project.maxPrice)
-        let state=0
+        async submitProject() {
+
             try {
+                console.log("skills is ")
+                console.log(this.skills)
+                console.log(typeof this.skills)
+                this.project.minPrice = parseInt(this.project.minPrice)
+                this.project.maxPrice = parseInt(this.project.maxPrice)
+                let state = 0
                 let config = {
                     method: 'post',
                     maxBodyLength: Infinity,
                     url: 'http://localhost:3000/project',
-                    headers: {token:this.token},
+                    headers: { token: this.token },
                     data: this.project
                 };
 
@@ -124,30 +132,30 @@ export default {
                 let response = await axios.request(config)
                 console.log('response add project is')
                 console.log(response)
-                this.projectId=response.data.projectId
-                state=1
-                 config = {
+                this.projectId = response.data.projectId
+                state = 1
+                config = {
                     method: 'post',
                     maxBodyLength: Infinity,
                     url: `http://localhost:3000/projectSkill/${response.data.projectId}`,
-                    headers: {token:this.token},
-                    data: {skills:this.skills}
+                    headers: { token: this.token },
+                    data: { skills: this.skills }
                 };
 
                 // axios.request(config)
-                 response = await axios.request(config)
-                state=2
+                response = await axios.request(config)
+                state = 2
                 this.showMsgBoxTwo("پروژه با موفقیت ساخته شد")
             } catch (error) {
                 console.log(error)
                 console.log(error.response.data.message ? "true" : "false")
-                if (error.response.data.message && state==0) {
+                if (error.response.data.message && state == 0) {
                     console.log(typeof error.response.data.message)
                     this.errorMessage = typeof error.response.data.message == 'object' ? error.response.data.message[0] : error.response.data.message; // Generic error message
-                }else if(state==1){
+                } else if (state == 1) {
                     this.showMsgBoxTwo(" پروژه با موفقیت ساخته شد ولی مهارت های ان اضافه نشدند")
                 }
-                 else {
+                else {
                     console.error('Error:', error);
                     this.errorMessage = 'An error occurred. Please try again.'; // Generic error message
                 }

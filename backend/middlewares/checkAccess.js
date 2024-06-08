@@ -1,7 +1,7 @@
 const shared = require("../utils/shared");
 const errors = require("../config/errors")
 module.exports = async (req, res, next) => {
-  const path = req. path;
+  const path = req.   path;
   const url = `${req.baseUrl}/`
   const method = req.method
   req.originalUrl = url

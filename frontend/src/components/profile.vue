@@ -1,6 +1,6 @@
 <template>
     <div>
-        <sidebar ></sidebar>
+        <sidebar></sidebar>
 
         <div class="profile">
 
@@ -11,22 +11,22 @@
                         <img src="https://via.placeholder.com/150" alt="User Avatar">
                     </b-avatar>
                     <div class="profile-header-info text-right mr-3 mb-3">
-                        <h1>{{ user.name }}</h1>
-                        <p><i class="fas fa-map-marker-alt"></i> {{ user.location }}</p>
-                        <p><i class="fas fa-envelope"></i> {{ user.email }}</p>
-                        <p><i class="fas fa-link"></i> <a href="#">www.example.com</a></p>
+                        <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                        <p class="text-primary"><i class="fas fa-map-marker-alt"></i> {{ user.username }}</p>
+                        <p class="text-primary"><i class="fas fa-envelope"></i> {{ user.email }}</p>
+                        <p class="text-primary"><i class="fas fa-link"></i>{{ user.number }}</p>
                     </div>
                 </div>
 
                 <b-card class="profile-details mt-4 text-right">
                     <h3>درباره من</h3>
-                    <p>{{ user.bio }}</p>
+                    <p>{{ user.about_me }}</p>
                     <hr>
                     <div class="profile-skills">
                         <h3>مهارت ها </h3>
-                        <b-badge v-for="skill in user.skills" :key="skill" pill variant="primary" class="mr-2 mb-2">{{
-                            skill
-                            }}</b-badge>
+                        <b-badge v-for="skill in skills" :key="skill.skill" pill variant="primary" class="mr-2 mb-2">{{
+                            skill.skill
+                        }}</b-badge>
                     </div>
                 </b-card>
 
@@ -44,27 +44,17 @@
 /* eslint-disable */
 import { getSession } from '../utils/sessionUtils'
 import Sidebar from './sideBar.vue';
+import Cookies from 'js-cookie';
+import axios from 'axios'
 
 export default {
     name: 'Profile',
     data() {
         return {
-            user: {
-                name: 'John Doe',
-                email: 'john.doe@example.com',
-                location: 'New York, USA',
-                bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac feugiat enim, non consectetur enim.',
-                skills: ['HTML', 'CSS', 'JavaScript', 'Vue.js', 'Bootstrap', 'UI/UX Design']
-                // Add more user details here
-            },
-            sidebarItems: [
-                {
-                    name: 'پروژه های من',
-                    icon: 'ni ni-planet text-orange',
-                    path: '/employer-project'
-                },
-                // Add more sidebar items as needed
-            ]
+            user: {},
+            token: Cookies.get('token'),
+            username: '',
+            skills:[]
         };
     },
     components: {
@@ -73,35 +63,63 @@ export default {
     methods: {
         async getUserInfo() {
             try {
+                this.username = getSession(this.token)
                 let config = {
                     method: 'GET',
                     maxBodyLength: Infinity,
-                    url: 'http://localhost:3000/users?username',
+                    url: 'http://localhost:3000/users',
                     headers: {},
-                    // data: this.form
+                    params: { username: this.username.username }
                 };
 
                 // axios.request(config)
+                console.log("config is")
+                console.log(config)
                 const response = await axios.request(config)
                 console.log('response is ')
-                console.log(response.data.projects)
-                this.projects = response.data.projects
+                console.log(response.data.users)
+                this.user = response.data.users[0]
             } catch (err) {
                 console.log(err)
                 this.projects = []
+            }
+        },
+        async getUserSkills() {
+            try {
+                const config = {
+                    method: 'GET',
+                    maxBodyLength: Infinity,
+                    url: `http://localhost:3000/userSkill`,
+                    headers: { token: this.token },
+                    params: { username: this.username.username }
+                };
+
+                //  axios.request(config)
+                const response = await axios.request(config)
+                console.log("response of userSkill")
+                console.log(response.data.userSkills)
+                this.skills=response.data.userSkills
+            } catch (err) {
+                console.log("error when get user skill data")
+                console.log(err)
             }
         },
         editProfile() {
             // Navigate to the edit profile page
             this.$router.push('/edit-profile');
         }
+    },
+    created() {
+        this.getUserInfo()
+        this.getUserSkills()
     }
 };
 </script>
 
 <style scoped>
 .profile {
-    background: linear-gradient(135deg, #fbc2eb, #a6c1ee); /* Gradient background */
+    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+    /* Gradient background */
 
     /* background: linear-gradient(135deg, #3498db, #8e44ad); */
     /* Gradient background */

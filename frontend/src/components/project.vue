@@ -75,8 +75,11 @@
                                 <strong>نام کاربری فریلنسر :</strong>: {{ suggest.freelancer_username }} <br>
                                 <!-- <small><strong>نام کاربری فریلنسر :</strong> {{ suggest.freelancer_username }}</small><br> -->
                                 <small><strong>زمان پیشنهادی :</strong> {{ suggest.time }} روز</small><br>
-                                <small><strong>بودجه پیشنهادی :</strong> {{ suggest.price }}</small>
+                                <small><strong>بودجه پیشنهادی :</strong> {{ suggest.price }}</small><br><br>
+                                <small v-if="suggest.employer_username==username.username"><b-button  type="submit" variant="primary"  @click.prevent="acceptSuggest(suggest.id)">قبول پیشنهاد</b-button></small>
+                                
                             </li>
+                           
                         </ul>
                     </b-card-body>
                 </b-card>
@@ -89,6 +92,7 @@
 /* eslint-disable */
 import axios from 'axios'
 import Cookies from 'js-cookie';
+import { getSession } from '../utils/sessionUtils'
 
 export default {
     name: "project",
@@ -107,12 +111,13 @@ export default {
                 { id: 1, username: 'freelancer1', proposal: 'I can do this project within the budget.', bid: '$1500', time: '30', comments: 'I have experience with similar projects.' },
                 { id: 2, username: 'freelancer2', proposal: 'Experienced developer ready to start.', bid: '$1800', time: '25', comments: 'Ready to deliver within the time frame.' }
             ],
-            token:Cookies.get('token')
+            token:Cookies.get('token'),
+            username:''
         };
     },
     created() {
-        console.log('token is ')
-        console.log(this.token)
+        this.username = getSession(this.token)
+
         this.getSkillsInfo()
         this.getProjectInfo()
         this.searchProjectSuggest()
@@ -187,10 +192,10 @@ export default {
                     this.suggests = []
                 }
         },
-        showMsgBoxTwo() {
+        showMsgBoxTwo(message='پیشنهاد شما با موفقیت ارسال شد') {
             console.log('hello')
             this.boxTwo = ''
-            this.$bvModal.msgBoxOk('پیشنهاد شما با موفقیت ارسال شد', {
+            this.$bvModal.msgBoxOk(message, {
                 title: 'درخواست موفق',
                 size: 'sm',
                 buttonSize: 'sm',
@@ -228,6 +233,45 @@ export default {
                 console.log('response is ')
                 console.log(response)
                 this.showMsgBoxTwo()
+                
+            } catch (err) {
+                console.log('error is ')
+                console.log(err)
+                console.log(err.response.data.message)
+                if (err=='access denied') {
+                    this.errorMessage = "شما برای اینکار دسترسی لازم را ندارید"
+                }else if(err.response.data.message){
+                    this.errorMessage = typeof err.response.data.message=='object'? err.response.data.message[0]:err.response.data.message; // Generic error message
+                } else {
+                    console.error('Error:', error);
+                    this.errorMessage = 'خطایی در سرور لطفا بعدا امتحان کنید.'; // Generic error message
+                }
+            }
+        },
+        async acceptSuggest(id) {
+            try {
+                if (!this.token) {
+                    throw "access denied"
+                }
+                console.log('id is')
+                console.log(id)
+                let config = {
+                    method: 'PATCH',
+                    maxBodyLength: Infinity,
+                    url: `http://localhost:3000/suggest`,
+                    headers: {token:this.token},
+                    params: {id}
+                };
+                console.log('config is ')
+
+                console.log(config)
+
+
+                // axios.request(config)
+                const response = await axios.request(config)
+                console.log('response is ')
+                console.log(response)
+                this.showMsgBoxTwo("پیشنهاد با موفقیت قبول شد")
                 
             } catch (err) {
                 console.log('error is ')
