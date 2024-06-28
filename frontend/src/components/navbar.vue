@@ -11,10 +11,10 @@
                             title="Designed and Coded by Creative Tim" data-placement="bottom">
                             parsLancer
                         </router-link>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                             aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
-                        </button>
+                        </button> -->
                         <div class="collapse navbar-collapse" id="navigation">
                             <ul class="navbar-nav navbar-nav-hover mx-auto">
                                 <li class="nav-item px-3">
@@ -23,9 +23,7 @@
                                 </li>
 
                                 <li class="nav-item px-3">
-                                    <a class="nav-link">
-                                        Utilities
-                                    </a>
+                                    <router-link class="nav-link text-dark" to="/user">فریلنسر ها</router-link>
                                 </li>
 
                                 <li class="nav-item px-3">

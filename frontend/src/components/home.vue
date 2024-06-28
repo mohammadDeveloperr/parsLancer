@@ -124,12 +124,7 @@
       </b-row>
     </b-container>
 
-  
-
-    <!-- Footer -->
-    <b-footer class="footer bg-primary text-white text-center py-3">
-      &copy; {{ new Date().getFullYear() }} Freelancer Platform
-    </b-footer>
+ 
   </div>
 </template>
 

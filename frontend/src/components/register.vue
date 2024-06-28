@@ -130,7 +130,9 @@ export default {
 .register-wrapper {
   width: 100vw;
   height: 100vh;
-  background: url('https://source.unsplash.com/random/1920x1080') no-repeat center center;
+  /*background: url('https://source.unsplash.com/random/1920x1080') no-repeat center center;*/
+  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+
   background-size: cover;
 }
 

@@ -12,13 +12,29 @@
           <span class="sidebar-text">{{ item.name }}</span>
         </router-link>
       </li>
+
+      <li class="sidebar-item" v-if="this.user.role=='admin'">
+        <router-link :to="'/admin/skill'" class="sidebar-link">
+          <i ></i>
+          <span class="sidebar-text"> مدیریت مهارت ها </span>
+        </router-link>
+      </li>
+      <li class="sidebar-item" v-if="this.user.role=='admin'">
+        <router-link :to="'/admin/users'" class="sidebar-link">
+          <i ></i>
+          <span class="sidebar-text">مدیریت کاربران</span>
+        </router-link>
+      </li>
+
+
     </ul>
   </aside>
 </template>
 
 <script>
 /* eslint-disable */
-
+import { getSession } from '../utils/sessionUtils'
+import Cookies from 'js-cookie';
 export default {
   name: 'Sidebar',
   data() {
@@ -48,19 +64,19 @@ export default {
         name: 'پیشنهاد های من',
         icon: 'ni ni-planet text-orange',
         path: '/suggest-project'
-      },
+      }
       
     ],
+    token: Cookies.get('token'),
     }
   },created(){
-    console.log(this.sidebarItems)
+    this.user = getSession(this.token)
   }
 };
 </script>
 
 <style scoped>
 .sidebar {
-
   left: 88% !important;
   width: 12%;
   height: 100%;

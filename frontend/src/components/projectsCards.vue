@@ -38,6 +38,8 @@
                 </b-col>
             </b-row>
         </b-container>
+        <b-pagination v-model="currentPage" :total-rows="totalProjects" :per-page="perPage" :aria-controls="filteredProjects"
+            class="my-4 pagination"></b-pagination>
     </div>
 </template>
 
@@ -48,6 +50,8 @@ export default {
     name: 'ProjectList',
     data() {
         return {
+            currentPage: 1,
+            perPage: 6,
             searchQuery: '',
             projects: [
                 {
@@ -64,14 +68,22 @@ export default {
     props:{query:{}},
     computed: {
         filteredProjects() {
+            const start = (this.currentPage - 1) * this.perPage;
+            const end = this.currentPage * this.perPage;
             if (!this.searchQuery) {
-                return this.projects;
+                return this.projects.slice(start, end);
             }
             const normalizedQuery = this.searchQuery.toLowerCase().trim();
-            return this.projects.filter(project =>
+            let filteredProjects = this.projects.filter(project =>
                 project.title.toLowerCase().includes(normalizedQuery) ||
                 project.description.toLowerCase().includes(normalizedQuery)
             );
+       
+       
+            return filteredProjects.slice(start, end);
+        },
+        totalProjects() {
+            return this.projects.length;
         },
     },
     created(){
@@ -115,6 +127,9 @@ export default {
 </script>
 
 <style scoped>
+.pagination{
+    margin-left: 90vh;
+}
 #projectPage {
     margin-top: 10%
 }

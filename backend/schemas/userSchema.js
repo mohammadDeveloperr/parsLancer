@@ -51,7 +51,10 @@ const updateUser={
   properties: {
     first_name: { type: "string",minLength:2  },
     last_name:{type:"string"},
-    about_me:{type:"string"}
+    about_me:{type:"string"},
+    username: { type: "string" },
+    number: { type: "string" },
+    email: { type: "string", format: "email" },
   },
   required: ["first_name"],
   additionalProperties: false,

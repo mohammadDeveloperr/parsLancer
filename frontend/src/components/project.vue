@@ -10,8 +10,11 @@
                 <b-card class="mb-3 project-card">
                     <b-card-header class="project-header">
                         <h4>{{ project.title }}</h4>
-                        <span v-if="project.status == 'pending'" class="text-success">باز </span>
-                        <span v-else class="text-danger">بسته</span>
+                        <span class="text-warning" v-if="project.status == 'pending'">باز </span>
+                        <span class="text-warning" v-else-if="project.status == 'doing'">درحال انجام </span>
+                        <span class="text-danger" v-else>بسته</span>
+                        <!-- <span v-if="project.status == 'pending'" >باز </span>
+                        <span v-else class="text-danger">بسته</span> -->
                     </b-card-header>
                     <b-card-body>
                         <b-card-text dir="rtl">
@@ -32,6 +35,32 @@
                         <b-card-text dir="rtl">
                             <strong> کافرما : </strong> {{ project.employer_username }}
                         </b-card-text>
+                        <b-card-text dir="rtl" v-if="project.status == 'doing' || project.status == 'done'">
+                            <strong> فریلنسر : </strong> {{ project.freelancer_username }}
+                        </b-card-text>
+                        <b-card-text dir="rtl">
+                            <small
+                                v-if="project.employer_username == username.username && project.status == 'doing'"><b-button
+                                    type="submit" variant="danger" @click.prevent="deleteProject(project.id)">حذف پروژه
+                                </b-button></small>
+
+                            <small
+                                v-if="project.employer_username == username.username && project.status == 'pending'"><b-button
+                                    type="submit" variant="primary" @click.prevent="updateProject(project.id)" class="mr-3">اپدیت
+                                    پروژه
+                                </b-button></small>
+
+
+                                <small
+                                v-if="project.employer_username == username.username && project.status == 'doing' && !project.employer_done"><b-button
+                                    type="submit" variant="primary" @click.prevent="doneProjectByEmployer(project.id)"> اتمام پروژه
+                                </b-button></small>
+                                <small
+                                v-if="project.freelancer_username == username.username && project.status == 'doing'&& !project.freelancer_done"><b-button
+                                    type="submit" variant="primary" @click.prevent="doneProjectByFreelancer(project.id)"> اتمام پروژه
+                                </b-button></small>
+                        </b-card-text>
+
                     </b-card-body>
                 </b-card>
             </b-tab>
@@ -64,7 +93,7 @@
             </b-tab>
 
             <!-- All Requests Tab -->
-            <b-tab title="تمام پیشنهادات" v-if="project.status == 'pending' && token" >
+            <b-tab title="تمام پیشنهادات" v-if="project.status == 'pending' && token">
                 <b-card class="mb-3 requests-list-card">
                     <b-card-header class="requests-list-header">
                         <h5>تمامی پیشنهادات این پروژه</h5>
@@ -76,10 +105,16 @@
                                 <!-- <small><strong>نام کاربری فریلنسر :</strong> {{ suggest.freelancer_username }}</small><br> -->
                                 <small><strong>زمان پیشنهادی :</strong> {{ suggest.time }} روز</small><br>
                                 <small><strong>بودجه پیشنهادی :</strong> {{ suggest.price }}</small><br><br>
-                                <small v-if="suggest.employer_username==username.username"><b-button  type="submit" variant="primary"  @click.prevent="acceptSuggest(suggest.id)">قبول پیشنهاد</b-button></small>
-                                
+                                <small v-if="suggest.employer_username == username.username"><b-button type="submit"
+                                        variant="primary" @click.prevent="acceptSuggest(suggest.id)">قبول
+                                        پیشنهاد</b-button></small>
+                                <small class="mr-3" v-if="suggest.freelancer_username == username.username"><b-button
+                                        type="submit" variant="danger" @click.prevent="deleteSuggest(project.id)">حذف
+                                        پیشنهاد
+                                    </b-button></small>
+
                             </li>
-                           
+
                         </ul>
                     </b-card-body>
                 </b-card>
@@ -106,13 +141,13 @@ export default {
                 price: 0,
                 time: 0
             },
-            errorMessage:'',
+            errorMessage: '',
             suggests: [
                 { id: 1, username: 'freelancer1', proposal: 'I can do this project within the budget.', bid: '$1500', time: '30', comments: 'I have experience with similar projects.' },
                 { id: 2, username: 'freelancer2', proposal: 'Experienced developer ready to start.', bid: '$1800', time: '25', comments: 'Ready to deliver within the time frame.' }
             ],
-            token:Cookies.get('token'),
-            username:''
+            token: Cookies.get('token'),
+            username: ''
         };
     },
     created() {
@@ -174,25 +209,25 @@ export default {
         },
         async searchProjectSuggest() {
             try {
-                    let config = {
-                        method: 'GET',
-                        maxBodyLength: Infinity,
-                        url: `http://localhost:3000/suggest?projectId=${this.$route.params.id}`,
-                        headers: {},
-                        // data: this.form
-                    };
+                let config = {
+                    method: 'GET',
+                    maxBodyLength: Infinity,
+                    url: `http://localhost:3000/suggest?projectId=${this.$route.params.id}`,
+                    headers: {},
+                    // data: this.form
+                };
 
 
-                    const response = await axios.request(config)
-                    console.log('suggest response is ')
-                    console.log(response)
-                    this.suggests = response.data.suggests
-                } catch (err) {
-                    console.log(err)
-                    this.suggests = []
-                }
+                const response = await axios.request(config)
+                console.log('suggest response is ')
+                console.log(response)
+                this.suggests = response.data.suggests
+            } catch (err) {
+                console.log(err)
+                this.suggests = []
+            }
         },
-        showMsgBoxTwo(message='پیشنهاد شما با موفقیت ارسال شد') {
+        showMsgBoxTwo(message = 'پیشنهاد شما با موفقیت ارسال شد') {
             console.log('hello')
             this.boxTwo = ''
             this.$bvModal.msgBoxOk(message, {
@@ -217,13 +252,13 @@ export default {
                 if (!this.token) {
                     throw "access denied"
                 }
-                this.suggest.price=parseInt(this.suggest.price)
-                this.suggest.time=parseInt(this.suggest.time)
+                this.suggest.price = parseInt(this.suggest.price)
+                this.suggest.time = parseInt(this.suggest.time)
                 let config = {
                     method: 'POST',
                     maxBodyLength: Infinity,
                     url: `http://localhost:3000/suggest/${this.$route.params.id}`,
-                    headers: {token:this.token},
+                    headers: { token: this.token },
                     data: this.suggest
                 };
 
@@ -233,15 +268,15 @@ export default {
                 console.log('response is ')
                 console.log(response)
                 this.showMsgBoxTwo()
-                
+
             } catch (err) {
                 console.log('error is ')
                 console.log(err)
                 console.log(err.response.data.message)
-                if (err=='access denied') {
+                if (err == 'access denied') {
                     this.errorMessage = "شما برای اینکار دسترسی لازم را ندارید"
-                }else if(err.response.data.message){
-                    this.errorMessage = typeof err.response.data.message=='object'? err.response.data.message[0]:err.response.data.message; // Generic error message
+                } else if (err.response.data.message) {
+                    this.errorMessage = typeof err.response.data.message == 'object' ? err.response.data.message[0] : err.response.data.message; // Generic error message
                 } else {
                     console.error('Error:', error);
                     this.errorMessage = 'خطایی در سرور لطفا بعدا امتحان کنید.'; // Generic error message
@@ -259,8 +294,8 @@ export default {
                     method: 'PATCH',
                     maxBodyLength: Infinity,
                     url: `http://localhost:3000/suggest`,
-                    headers: {token:this.token},
-                    params: {id}
+                    headers: { token: this.token },
+                    params: { id }
                 };
                 console.log('config is ')
 
@@ -272,15 +307,174 @@ export default {
                 console.log('response is ')
                 console.log(response)
                 this.showMsgBoxTwo("پیشنهاد با موفقیت قبول شد")
-                
+
             } catch (err) {
                 console.log('error is ')
                 console.log(err)
                 console.log(err.response.data.message)
-                if (err=='access denied') {
+                if (err == 'access denied') {
                     this.errorMessage = "شما برای اینکار دسترسی لازم را ندارید"
-                }else if(err.response.data.message){
-                    this.errorMessage = typeof err.response.data.message=='object'? err.response.data.message[0]:err.response.data.message; // Generic error message
+                } else if (err.response.data.message) {
+                    this.errorMessage = typeof err.response.data.message == 'object' ? err.response.data.message[0] : err.response.data.message; // Generic error message
+                } else {
+                    console.error('Error:', error);
+                    this.errorMessage = 'خطایی در سرور لطفا بعدا امتحان کنید.'; // Generic error message
+                }
+            }
+        },
+        async deleteProject(id) {
+            try {
+                if (!this.token) {
+                    throw "access denied"
+                }
+                console.log('id is')
+                console.log(id)
+                let config = {
+                    method: 'delete',
+                    maxBodyLength: Infinity,
+                    url: `http://localhost:3000/project/${id}`,
+                    headers: { token: this.token }
+                };
+                console.log('config is ')
+
+                console.log(config)
+
+
+                // axios.request(config)
+                const response = await axios.request(config)
+                console.log('response is ')
+                console.log(response)
+                this.showMsgBoxTwo("پروژه با موفقیت حذف شد")
+
+            } catch (err) {
+                console.log('error is ')
+                console.log(err)
+                console.log(err.response.data.message)
+                if (err == 'access denied') {
+                    this.errorMessage = "شما برای اینکار دسترسی لازم را ندارید"
+                } else if (err.response.data.message) {
+                    this.errorMessage = typeof err.response.data.message == 'object' ? err.response.data.message[0] : err.response.data.message; // Generic error message
+                } else {
+                    console.error('Error:', error);
+                    this.errorMessage = 'خطایی در سرور لطفا بعدا امتحان کنید.'; // Generic error message
+                }
+            }
+        },
+        
+        async updateProject(id) {
+            this.$router.push(`/update-project/${id}`);
+
+        },
+        async deleteSuggest(id) {
+            try {
+                if (!this.token) {
+                    throw "access denied"
+                }
+                console.log('id is')
+                console.log(id)
+                let config = {
+                    method: 'delete',
+                    maxBodyLength: Infinity,
+                    url: `http://localhost:3000/suggest/${id}`,
+                    headers: { token: this.token }
+                };
+                console.log('config is ')
+
+                console.log(config)
+
+
+                // axios.request(config)
+                const response = await axios.request(config)
+                console.log('response is ')
+                console.log(response)
+                this.showMsgBoxTwo("پیشنهاد با موفقیت حذف شد")
+
+            } catch (err) {
+                console.log('error is ')
+                console.log(err)
+                console.log(err.response.data.message)
+                if (err == 'access denied') {
+                    this.errorMessage = "شما برای اینکار دسترسی لازم را ندارید"
+                } else if (err.response.data.message) {
+                    this.errorMessage = typeof err.response.data.message == 'object' ? err.response.data.message[0] : err.response.data.message; // Generic error message
+                } else {
+                    console.error('Error:', error);
+                    this.errorMessage = 'خطایی در سرور لطفا بعدا امتحان کنید.'; // Generic error message
+                }
+            }
+        },
+        async doneProjectByEmployer(id){
+            try {
+                if (!this.token) {
+                    throw "access denied"
+                }
+                console.log('id is')
+                console.log(id)
+                let config = {
+                    method: 'PATCH',
+                    maxBodyLength: Infinity,
+                    url: `http://localhost:3000/project/done/employer`,
+                    headers: { token: this.token },
+                    params: { id }
+                };
+                console.log('config is ')
+
+                console.log(config)
+
+
+                // axios.request(config)
+                const response = await axios.request(config)
+                console.log('response is ')
+                console.log(response)
+                this.showMsgBoxTwo("پروژه با موفقیت از طرف شما به اتمام رسید")
+
+            } catch (err) {
+                console.log('error is ')
+                console.log(err)
+                console.log(err.response.data.message)
+                if (err == 'access denied') {
+                    this.errorMessage = "شما برای اینکار دسترسی لازم را ندارید"
+                } else if (err.response.data.message) {
+                    this.errorMessage = typeof err.response.data.message == 'object' ? err.response.data.message[0] : err.response.data.message; // Generic error message
+                } else {
+                    console.error('Error:', error);
+                    this.errorMessage = 'خطایی در سرور لطفا بعدا امتحان کنید.'; // Generic error message
+                }
+            }
+        },
+        async doneProjectByFreelancer(id){
+            try {
+                if (!this.token) {
+                    throw "access denied"
+                }
+                console.log('id is')
+                console.log(id)
+                let config = {
+                    method: 'PATCH',
+                    maxBodyLength: Infinity,
+                    url: `http://localhost:3000/project/done/freelancer`,
+                    headers: { token: this.token },
+                    params: { id }
+                };
+                console.log('config is ')
+
+                console.log(config)
+
+
+                // axios.request(config)
+                const response = await axios.request(config)
+                console.log('response is ')
+                console.log(response)
+                this.showMsgBoxTwo("پروژه با موفقیت از طرف شما به اتمام رسید")
+
+            } catch (err) {
+                console.log('error is ')
+                console.log(err)
+                console.log(err.response.data.message)
+                if (err == 'access denied') {
+                    this.errorMessage = "شما برای اینکار دسترسی لازم را ندارید"
+                } else if (err.response.data.message) {
+                    this.errorMessage = typeof err.response.data.message == 'object' ? err.response.data.message[0] : err.response.data.message; // Generic error message
                 } else {
                     console.error('Error:', error);
                     this.errorMessage = 'خطایی در سرور لطفا بعدا امتحان کنید.'; // Generic error message

@@ -10,7 +10,7 @@ module.exports.addSkill = async (skill) => {
     }
 }
 
-module.exports.getSkill = async (skillName) => {
+module.exports.getSkill = async (skillName=null) => {
     try {
         const condition = skillName ? { where: {...skillName} } : {};
         const result = await Skill.findAll({ ...condition });

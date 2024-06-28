@@ -3,7 +3,7 @@ const helper = require("../helpers/skills.helper");
 
 module.exports.getSkill = async (req, res, next) => {
     try {
-      const skillName= req.params;
+      const skillName= req.query;
       const skills = await helper.getSkill(skillName);
       res.status(200).json({ skills });
     } catch (err) {

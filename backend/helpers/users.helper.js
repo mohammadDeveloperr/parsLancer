@@ -3,7 +3,7 @@ const { json } = require("sequelize");
 const User = require("../models/users");
 const { errorCreator } = require("../utils/error");
 const bcrypt = require("bcryptjs");
-
+const UserSkill=require('../models/usersSkill');
 module.exports.checkDbForLogin = async (username, password) => {
   try {
     const condition ={ where: { username } } ;
@@ -31,6 +31,37 @@ module.exports.getUser = async (username = null) => {
     };
     const condition = username ? { where: { username } } : {};
     const result = await User.findAll({ ...condition, ...select });
+    // let users=JSON.stringify(result)
+    return result;
+  } catch (err) {
+    throw err;
+  }
+};
+
+module.exports.getUserWithSkill = async (username = null,skill=null) => {
+  try {
+    const select = {
+      attributes: [
+        "first_name",
+        "last_name",
+        "username",
+        "email",
+        "number",
+        "about_me",
+      ],
+    };
+    const condition = username ? { where: { username } } : {};
+    const skillCondition=skill ? { where: { skill } } : {};
+    
+    const result = await User.findAll({
+      include: {
+        model: UserSkill,      
+        ...skillCondition  
+      },
+      ...condition,
+       ...select 
+    
+    });
     // let users=JSON.stringify(result)
     return result;
   } catch (err) {

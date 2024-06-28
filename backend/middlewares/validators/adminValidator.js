@@ -11,7 +11,7 @@ const adminValidator = async (req, res, next) => {
   try {
     let url=req.originalUrl.substring(0, req.originalUrl.indexOf("?"));
     let method=req.method
-    let schema;
+    let schema={};
     if(url=='/admin/users/' && method=="PUT") schema=schemas.updateUser
     const validate = ajv.compile(schema);
     const valid = validate(req.body);

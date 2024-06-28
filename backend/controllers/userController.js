@@ -2,7 +2,7 @@ const User = require("../models/users");
 
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { checkDbForLogin, getUser ,updateUser,updatePassword,getPassword} = require("../helpers/users.helper");
+const { checkDbForLogin, getUser ,updateUser,updatePassword,getPassword,getUserWithSkill} = require("../helpers/users.helper");
 const shared = require("../utils/shared");
 module.exports.login = async (req, res, next) => {
   try {
@@ -36,7 +36,7 @@ module.exports.login = async (req, res, next) => {
       { username, password, email, first_name, last_name, number,role },
       process.env.user_expire_time
     );
-    res.status(200).json({ token });
+    res.status(200).json({ token,role });
   } catch (err) {
     next({ message:err.message|| "لاگین کاربر به مشکل خورده است", data:err.data|| err,statusCode:err.statusCode||null });
   }
@@ -62,7 +62,8 @@ module.exports.register = async (req, res, next) => {
 module.exports.getUser = async (req, res, next) => {
   try {
     const { username } = req.query;
-    const users = await getUser(username);
+    const {skill}=req.query
+    const users = await getUserWithSkill(username,skill);
     res.status(200).json({users});
   } catch (err) {
     next({ message:err.message|| "پیدا کردن کاربر با مشکل مواجه شد", data:err.data|| err,statusCode:err.statusCode||null });

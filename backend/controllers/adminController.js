@@ -26,7 +26,7 @@ module.exports.updateUser = async (req, res, next) => {
 
 module.exports.deleteUser = async (req, res, next) => {
   try {
-    const { username } = req.query;
+    const { username } = req.params;
     const result = await deleteUser(username);
     console.log(result);
     res.status(200).json({ message: `کاربر ${username} با موفقیت حذف شد` });

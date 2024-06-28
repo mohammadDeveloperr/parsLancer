@@ -14,6 +14,21 @@ module.exports.getProject = async (req, res, next) => {
   }
 };
 
+module.exports.getProjectWithLabels = async (req, res, next) => {
+  try {
+    const param = req.query;
+    let skill=null
+    if(param.skill){
+      skill=param.skill
+      delete param.skill
+    }
+    const projects = await helper.getProjectWithLabels(param,skill);
+    res.status(200).json({ projects });
+  } catch (err) {
+    next({ message: "پیدا کردن کاربر با مشکل مواجه شد", data: err });
+  }
+};
+
 module.exports.addProject = async (req, res, next) => {
   try {
     console.log(req.user.username);
@@ -125,7 +140,9 @@ module.exports.freelancerStatus = async (req, res, next) => {  //this api for ch
 module.exports.employerStatus = async (req, res, next) => {  //this api for change project status by freelancer
   try {
     const { id } = req.query;
-    const project = await helper.projectIsFound(id);
+    let project = await helper.getProject({id});
+    // const projects = await helper.getProject(param);
+    project=project[0]
     if(project.status !="doing"){
       throw "access denied";
     }

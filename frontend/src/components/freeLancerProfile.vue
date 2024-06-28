@@ -1,6 +1,5 @@
 <template>
     <div>
-        <sidebar></sidebar>
 
         <div class="profile">
 
@@ -30,10 +29,7 @@
                     </div>
                 </b-card>
 
-                <!-- Edit Profile Button -->
-                <b-button variant="primary" @click="editProfile" class="mt-3">
-                    <i class="fas fa-user-edit"></i> ویرایش پروفایل
-                </b-button>
+            
             </b-container>
         </div>
 
@@ -52,7 +48,7 @@ export default {
     data() {
         return {
             user: {},
-            token: Cookies.get('token'),
+           
             username: '',
             skills:[]
         };
@@ -63,21 +59,18 @@ export default {
     methods: {
         async getUserInfo() {
             try {
-                this.username = getSession(this.token)
+                this.username = this.$route.params.username
                 let config = {
                     method: 'GET',
                     maxBodyLength: Infinity,
                     url: 'http://localhost:3000/users',
                     headers: {},
-                    params: { username: this.username.username }
+                    params: { username: this.username }
                 };
 
                 // axios.request(config)
-                console.log("config is")
-                console.log(config)
+            
                 const response = await axios.request(config)
-                console.log('response is ')
-                console.log(response.data.users)
                 this.user = response.data.users[0]
             } catch (err) {
                 console.log(err)
@@ -91,7 +84,7 @@ export default {
                     maxBodyLength: Infinity,
                     url: `http://localhost:3000/userSkill`,
                     headers: { token: this.token },
-                    params: { username: this.username.username }
+                    params: { username: this.username }
                 };
 
                 //  axios.request(config)
@@ -110,6 +103,8 @@ export default {
         }
     },
     created() {
+        console.log('username is ')
+        console.log(this.$route.params.id)
         this.getUserInfo()
         this.getUserSkills()
     }

@@ -14,7 +14,7 @@
                                         <b-form @submit.prevent="submitProject">
                                             <b-form-group label="تیتر پروژه" label-for="project-title">
                                                 <b-form-input id="project-title" v-model="project.title"
-                                                    required></b-form-input>
+                                                    ></b-form-input>
                                             </b-form-group>
 
                                             <b-form-group label="توضیحات پروژه" label-for="project-explain">
@@ -44,7 +44,7 @@
 
 
 
-                                            <b-button type="submit" variant="primary">اضافه کردن پروژه</b-button>
+                                            <b-button type="submit" variant="primary">اپدیت کردن پروژه</b-button>
                                             <div v-if="errorMessage" class="mt-3 text-center text-danger">
                                                 {{ errorMessage }}
                                             </div>
@@ -114,32 +114,34 @@ export default {
                 })
         },
         async submitProject() {
-
+            let state = 0
             try {
-                console.log("skills is ")
-                console.log(this.skills)
-                console.log(typeof this.skills)
+
+                this.checkTags()
+
                 this.project.minPrice = parseInt(this.project.minPrice)
                 this.project.maxPrice = parseInt(this.project.maxPrice)
-                let state = 0
+                const {title,explain,minPrice,maxPrice}=this.project
+                this.project={title,explain,minPrice,maxPrice}
                 let config = {
-                    method: 'post',
+                    method: 'put',
                     maxBodyLength: Infinity,
-                    url: 'http://localhost:3000/project',
+                    url: `http://localhost:3000/project/${this.$route.params.id}`,
                     headers: { token: this.token },
                     data: this.project
                 };
 
+
                 // axios.request(config)
                 let response = await axios.request(config)
+                state = 1
                 console.log('response add project is')
                 console.log(response)
-                this.projectId = response.data.projectId
-                state = 1
+
                 config = {
-                    method: 'post',
+                    method: 'put',
                     maxBodyLength: Infinity,
-                    url: `http://localhost:3000/projectSkill/${response.data.projectId}`,
+                    url: `http://localhost:3000/projectSkill/${this.$route.params.id}`,
                     headers: { token: this.token },
                     data: { skills: this.skills }
                 };
@@ -147,24 +149,122 @@ export default {
                 // axios.request(config)
                 response = await axios.request(config)
                 state = 2
-                this.showMsgBoxTwo("پروژه با موفقیت ساخته شد")
+                this.showMsgBoxTwo("پروژه با موفقیت اپدیت شد")
             } catch (error) {
                 console.log(error)
-                console.log(error.response.data.message ? "true" : "false")
-                if (error.response.data.message && state == 0) {
+                if ( state == 0 && error.response) {
                     console.log(typeof error.response.data.message)
                     this.errorMessage = typeof error.response.data.message == 'object' ? error.response.data.message[0] : error.response.data.message; // Generic error message
-                } else if (state == 1) {
-                    this.showMsgBoxTwo(" پروژه با موفقیت ساخته شد ولی مهارت های ان اضافه نشدند")
+                }
+                else if ( state == 0 && !error.response) {
+                    this.errorMessage = error
+                }
+                else if (state == 1) {
+                    this.showMsgBoxTwo(" پروژه با موفقیت اپدیت شد ولی مهارت های ان اضافه نشدند")
                 }
                 else {
                     console.error('Error:', error);
                     this.errorMessage = 'An error occurred. Please try again.'; // Generic error message
                 }
             }
+        },
+        async getProjectInfo() {
+            {
+                try {
+                    let config = {
+                        method: 'GET',
+                        maxBodyLength: Infinity,
+                        url: `http://localhost:3000/project?id=${this.$route.params.id}`,
+                        headers: {},
+                        // data: this.form
+                    };
+
+
+                    const response = await axios.request(config)
+                    this.project = response.data.projects[0]
+                } catch (err) {
+                    console.log(err)
+                    this.project = []
+                }
+
+            }
+        },
+        async getSkillsInfo() {
+
+            try {
+                let config = {
+                    method: 'GET',
+                    maxBodyLength: Infinity,
+                    url: `http://localhost:3000/projectSkill?projectId=${this.$route.params.id}`,
+                    headers: {},
+                    //data: {projectId:this.$route.params.id}
+                };
+
+
+                // axios.request(config)
+                const response = await axios.request(config)
+                console.log('this is rsponse')
+                console.log(response)
+                for (let skill of response.data.projectSkills) {
+                    console.log('this is skill tag')
+                    console.log(skill.skill)
+                    this.skills.push(skill.skill)
+                }
+                console.log(skills)
+                // this.skills = response.data.projectSkills
+            } catch (err) {
+                console.log(err)
+                this.skills = []
+            }
+
+        },
+        async getTags() {
+            try {
+                let config = {
+                    method: 'GET',
+                    maxBodyLength: Infinity,
+                    url: 'http://localhost:3000/skill',
+                    headers: {},
+                    params: {}
+                };
+
+
+                const response = await axios.request(config)
+                console.log('tags is ')
+
+                console.log(response)
+                this.allSkill = response.data.skills
+            } catch (err) {
+                console.log(err)
+                this.projects = []
+            }
+        },
+        checkTags() {
+            let check = false;
+            console.log('skills is')
+            console.log(this.skills)
+            for (let skill of this.skills) {
+                console.log(skill)
+                check = this.allSkill.find(elem => { return elem.name == skill })
+                console.log('check is ')
+                console.log(check)
+                if (!check) {
+                    throw "مهارت انتخابی موجود نمیباشد"
+                }
+            }
+
         }
+    },
+    created() {
+        if (!this.$route.params.id) {
+            this.$router.push('/project');
+        }
+        this.getProjectInfo()
+        this.getSkillsInfo()
+        this.getTags()
     }
-};
+
+}
 </script>
 
 <style scoped>

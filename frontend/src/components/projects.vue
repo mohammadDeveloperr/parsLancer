@@ -1,16 +1,16 @@
 <template>
     <div id="projectPage">
-     
+
         <!-- Project List -->
         <b-container fluid class="project-list my-5">
             <b-row justify="center">
-                <b-col lg="8" md="10">
+                <b-col id="my-col" lg="8" md="10" :per-page="2" :current-page="1">
                     <b-card v-for="project in filteredProjects" :key="project.id" class="mb-4 project-card">
                         <b-card-body class="text-right">
                             <b-card-title>{{ project.title }}</b-card-title>
-                            <b-card-text>{{ project.explain.slice(0,50) }}</b-card-text>
+                            <b-card-text>{{ project.explain.slice(0, 50) }}</b-card-text>
                             <div class="d-flex justify-content-between align-items-center mt-3" dir="rtl">
-                                <small class="text-muted mt-2">تاریخ : {{ project.createdAt.slice(0,10) }}</small>
+                                <small class="text-muted mt-2">تاریخ : {{ project.createdAt.slice(0, 10) }}</small>
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center mt-3" dir="rtl">
@@ -18,36 +18,52 @@
                                     <span class="text-muted mr-2">هزینه:</span>
                                     <span>{{ project.minPrice }} ریال</span>
                                 </div>
-                                <b-button class="mt-5" variant="success" @click="viewProject(project.id)">مشاهده پروژه</b-button>
-
+                                
+                             
 
                             </div>
-                            <div>
-                                <!-- <b-badge v-for="skill in project.skills" :key="skill" variant="primary" class="mr-1">{{
-                                    skill }}</b-badge> -->
+                            <div dir="rtl" class="mt-4">
+                                <div>
+                                     <strong>مهارت ها :</strong>
+                                <b-badge v-for="skill in project.projectSkills" :key="skill" variant="primary"
+                                    class="mr-1">{{
+                                        skill.skill }}</b-badge>
+                                </div>
+                            
                             </div>
                             <br>
-                            <small class="text-muted mt-5 text-dark">  وضعیت پروژه :
-                                 <span style="color: green" v-if="project.status=='pending'">باز </span>
-                                 <span style="color: red" v-else>بسته</span>
-                                
-                                </small>
+                            <small class="text-muted mt-5 text-dark"> وضعیت پروژه :
+                                <span class="text-success" v-if="project.status == 'pending'">باز </span>
+                                <span class="text-info" v-else-if="project.status == 'doing'">درحال انجام </span>
+                                <span class="text-danger" v-else>بسته</span>
 
+                            </small>
+                            <b-button class="mt-5" id="btn-showProject" variant="success" @click="viewProject(project.id)">مشاهده
+                                    پروژه</b-button>
+                                        
                         </b-card-body>
                     </b-card>
                 </b-col>
             </b-row>
         </b-container>
+        <b-pagination v-model="currentPage" :total-rows="totalProjects" :per-page="perPage"
+            :aria-controls="filteredProjects" class=" pagination my-4"></b-pagination>
+
+        <!-- <pagination len="1" pageSize="1"></pagination> -->
     </div>
 </template>
 
 <script>
+/* eslint-disable */
 import axios from 'axios'
+// import pagination from './pagination.vue'
 
 export default {
     name: 'ProjectList',
     data() {
         return {
+            currentPage: 1,
+            perPage: 6,
             searchQuery: '',
             projects: [
                 {
@@ -62,25 +78,45 @@ export default {
         };
     },
     computed: {
+
         filteredProjects() {
+            const start = (this.currentPage - 1) * this.perPage;
+            const end = this.currentPage * this.perPage;
             if (!this.searchQuery) {
-                return this.projects;
+                return this.projects.slice(start, end);
             }
             const normalizedQuery = this.searchQuery.toLowerCase().trim();
-            return this.projects.filter(project =>
+            let filteredProjects = this.projects.filter(project =>
                 project.title.toLowerCase().includes(normalizedQuery) ||
                 project.description.toLowerCase().includes(normalizedQuery)
             );
+
+
+            return filteredProjects.slice(start, end);
+
+        },
+        totalProjects() {
+            return this.projects.length;
+        },
+        paginatedProjects() {
+            const start = (this.currentPage - 1) * this.perPage;
+            const end = this.currentPage * this.perPage;
+            return this.projects.slice(start, end);
         },
     },
-    created(){
+    components: {
+        // pagination
+    },
+    created() {
+        console.log('this is projects')
+        console.log(this.projects)
         this.fetchProject()
     },
     methods: {
-        async fetchProject(){
+        async fetchProject() {
             try {
-               
-                const query=this.$router.history.current.query
+
+                const query = this.$router.history.current.query
                 let config = {
                     method: 'GET',
                     maxBodyLength: Infinity,
@@ -93,12 +129,13 @@ export default {
                 const response = await axios.request(config)
                 console.log('response is ')
                 console.log(response.data.projects)
-                this.projects=response.data.projects
+                this.projects = response.data.projects
+                this.projects.reverse()
             } catch (err) {
                 console.log(err)
-                this.projects=[]
+                this.projects = []
             }
-          
+
         },
         viewProject(id) {
             // Navigate to project details page
@@ -113,6 +150,14 @@ export default {
 </script>
 
 <style scoped>
+
+#btn-showProject{
+float: left;}
+
+.pagination {
+    margin-left: 90vh;
+}
+
 #projectPage {
     margin-top: 10%
 }
