@@ -25,8 +25,8 @@
                         <!-- User Access Level Field -->
                         <b-form-group label="سطح دسترسی :">
                             <b-form-select v-model="user.role">
-                            <option value="user" selected >user</option>
-                            <option value="admin">admin</option>
+                                <option value="user" selected>user</option>
+                                <option value="admin">admin</option>
                             </b-form-select>
                         </b-form-group>
                         <!-- Bio Field -->
@@ -63,7 +63,7 @@ export default {
     name: 'EditProfile',
     data() {
         return {
-            access_level:"",
+            access_level: "",
             token: Cookies.get('token'),
             username: '',
             user: {},
@@ -162,7 +162,7 @@ export default {
 
 
                 const response = await axios.request(config)
-                
+
                 this.user = response.data.users[0]
             } catch (err) {
                 console.log(err)
@@ -251,6 +251,9 @@ export default {
         Sidebar
     },
     created() {
+        this.user = getSession(this.token)
+        if (this.user.role != "admin")
+            this.$router.push('/404');
         this.getUserInfo()
         this.getUserSkills()
         this.getTags()

@@ -40,24 +40,29 @@
                         </b-card-text>
                         <b-card-text dir="rtl">
                             <small
-                                v-if="project.employer_username == username.username && project.status == 'doing'"><b-button
+                                v-if="(project.employer_username == username.username && project.status != 'doing')||username.role=='admin'"><b-button
                                     type="submit" variant="danger" @click.prevent="deleteProject(project.id)">حذف پروژه
                                 </b-button></small>
 
                             <small
-                                v-if="project.employer_username == username.username && project.status == 'pending'"><b-button
+                                v-if="(project.employer_username == username.username && project.status == 'pending')||username.role=='admin'"><b-button
                                     type="submit" variant="primary" @click.prevent="updateProject(project.id)" class="mr-3">اپدیت
                                     پروژه
                                 </b-button></small>
+                                <small class="mr-3 " v-if="(project.freelancer_username == username.username || (project.employer_username == username.username && project.status=='doing'))  "><b-button
+                                        type="submit" variant="info" @click.prevent="sendMessageWithProjectId(project.id)">
+                                        ارسال پیام
+                                    </b-button></small>
+                               
 
 
-                                <small
-                                v-if="project.employer_username == username.username && project.status == 'doing' && !project.employer_done"><b-button
-                                    type="submit" variant="primary" @click.prevent="doneProjectByEmployer(project.id)"> اتمام پروژه
+                                <small class="mr-3"
+                                v-if="(project.employer_username == username.username && project.status == 'doing' && !project.employer_done)||username.role=='admin'"><b-button
+                                    type="submit" variant="success" @click.prevent="doneProjectByEmployer(project.id)"> اتمام پروژه
                                 </b-button></small>
-                                <small
-                                v-if="project.freelancer_username == username.username && project.status == 'doing'&& !project.freelancer_done"><b-button
-                                    type="submit" variant="primary" @click.prevent="doneProjectByFreelancer(project.id)"> اتمام پروژه
+                                <small class="mr-3"
+                                v-if="(project.freelancer_username == username.username && project.status == 'doing'&& !project.freelancer_done)||username.role=='admin'"><b-button
+                                    type="submit" variant="success" @click.prevent="doneProjectByFreelancer(project.id)"> اتمام پروژه
                                 </b-button></small>
                         </b-card-text>
 
@@ -105,12 +110,16 @@
                                 <!-- <small><strong>نام کاربری فریلنسر :</strong> {{ suggest.freelancer_username }}</small><br> -->
                                 <small><strong>زمان پیشنهادی :</strong> {{ suggest.time }} روز</small><br>
                                 <small><strong>بودجه پیشنهادی :</strong> {{ suggest.price }}</small><br><br>
-                                <small v-if="suggest.employer_username == username.username"><b-button type="submit"
+                                <small v-if="(suggest.employer_username == username.username)||username.role=='admin'"><b-button type="submit"
                                         variant="primary" @click.prevent="acceptSuggest(suggest.id)">قبول
                                         پیشنهاد</b-button></small>
-                                <small class="mr-3" v-if="suggest.freelancer_username == username.username"><b-button
+                                <small class="mr-3" v-if="(suggest.freelancer_username == username.username)||username.role=='admin'"><b-button
                                         type="submit" variant="danger" @click.prevent="deleteSuggest(project.id)">حذف
                                         پیشنهاد
+                                    </b-button></small>
+                                <small class="mr-3" v-if="suggest.freelancer_username == username.username || suggest.employer_username == username.username "><b-button
+                                        type="submit" variant="info" @click.prevent="sendMessage(suggest.id)">
+                                        ارسال پیام
                                     </b-button></small>
 
                             </li>
@@ -152,7 +161,9 @@ export default {
     },
     created() {
         this.username = getSession(this.token)
-
+        this.user = getSession(this.token)
+        if (!this.username)
+            this.$router.push('/login');
         this.getSkillsInfo()
         this.getProjectInfo()
         this.searchProjectSuggest()
@@ -358,6 +369,30 @@ export default {
                     console.error('Error:', error);
                     this.errorMessage = 'خطایی در سرور لطفا بعدا امتحان کنید.'; // Generic error message
                 }
+            }
+        },
+        sendMessage(suggestId){
+            this.$router.push(`/message/${suggestId}`);
+        },
+        async sendMessageWithProjectId(ProjectId){
+            try {
+                let config = {
+                    method: 'GET',
+                    maxBodyLength: Infinity,
+                    url: `http://localhost:3000/suggest?projectId=${ProjectId}&freelancer_username=${this.project.freelancer_username}`,
+                    headers: {},
+                    // data: this.form
+                };
+
+
+                const response = await axios.request(config)
+                console.log('suggest response is ')
+                console.log(response)
+                const suggestId = response.data.suggests[0].id
+                this.$router.push(`/message/${suggestId}`);
+            } catch (err) {
+                console.log(err)
+                const suggestId=0
             }
         },
         

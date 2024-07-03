@@ -15,6 +15,16 @@ module.exports.getSuggest = async (req, res, next) => {
       next({ message: "پیدا کردن پیشنهاد با مشکل مواجه شد", data: err });
     }
   };
+module.exports.getSuggestWithProject = async (req, res, next) => {
+    try {
+ 
+      const freelancer_username= req.params;
+      const suggests = await helper.getSuggestWithProject(freelancer_username);
+      res.status(200).json({ suggests });
+    } catch (err) {
+      next({ message: "پیدا کردن پیشنهاد با مشکل مواجه شد", data: err });
+    }
+  };
   
   module.exports.addSuggest = async (req, res, next) => {
     try {

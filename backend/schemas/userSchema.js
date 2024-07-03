@@ -55,6 +55,7 @@ const updateUser={
     username: { type: "string" },
     number: { type: "string" },
     email: { type: "string", format: "email" },
+    userSkills: {type:"array" },
   },
   required: ["first_name"],
   additionalProperties: false,

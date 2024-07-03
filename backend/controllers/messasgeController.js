@@ -17,6 +17,17 @@ module.exports.getMessage = async (req, res, next) => {
     next({ message: "پیدا کردن پیام با مشکل مواجه شد", data: err });
   }
 };
+
+module.exports.getMessagesWithSuggestId = async (req, res, next) => {
+  try {
+    const {suggestId} = req.params;
+    
+    const messages = await helper.getMessagesWithSuggestId(suggestId);
+    res.status(200).json({ messages });
+  } catch (err) {
+    next({ message: "پیدا کردن کاربر با مشکل مواجه شد", data: err });
+  }
+};
 module.exports.addMessage= async (req, res, next) => {
     try {
       const {suggestId}=req.params

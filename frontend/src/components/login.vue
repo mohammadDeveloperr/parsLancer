@@ -22,7 +22,6 @@
                 {{ errorMessage }}
             </div>
             <div class="mt-3 text-center">
-                <b-link href="#">فراموش رمز عبور</b-link>
                 <div class="mt-2">
                     <b-link to="/register">ثبت نام</b-link>
                 </div>
@@ -49,10 +48,10 @@ export default {
         };
     },
     methods: {
-        showMsgBoxTwo() {
+        async showMsgBoxTwo() {
             console.log('hello')
             this.boxTwo = ''
-            this.$bvModal.msgBoxOk('شما با موفقیت وارد شدین', {
+           await this.$bvModal.msgBoxOk('شما با موفقیت وارد شدین', {
                 title: 'Confirmation',
                 size: 'sm',
                 buttonSize: 'sm',
@@ -64,6 +63,9 @@ export default {
                 .then(value => {
                     this.boxTwo = value
                     this.$router.push('/');
+                    location.reload();
+
+
                 })
                 .catch(err => {
                     // An error occurred
@@ -89,19 +91,23 @@ export default {
 
 
 
-                const { token,role } = response.data
+                const { token, role } = response.data
                 console.log(token)
 
                 Cookies.set('token', token, { expires: 7 });
                 Cookies.set('username', this.form.username, { expires: 7 });
-                setSession(token, { username: this.form.username,role },10080)
-                this.showMsgBoxTwo()
+                setSession(token, { username: this.form.username, role }, 10080)
+                await this.showMsgBoxTwo()
 
             } catch (error) {
+                console.log('this is error')
                 console.log(error)
                 console.log(error.response.data.message ? "true" : "false")
-                if (error.response.data.message) {
+                console.log(error.response.data.message)
+                if (typeof error.response.data.message=="object") {
                     this.errorMessage = error.response.data.message[0] || error.response.data.message; // Generic error message
+                }else if(typeof error.response.data.message=="string"){
+                    this.errorMessage = error.response.data.message || error.response.data.message;
                 } else {
                     console.error('Error:', error);
                     this.errorMessage = 'An error occurred. Please try again.'; // Generic error message

@@ -1,13 +1,15 @@
 const { setEvaluated, toHash } = require("ajv/dist/compile/util");
+const { Op } = require('sequelize');
+
 const { json } = require("sequelize");
 const User = require("../models/users");
 const { errorCreator } = require("../utils/error");
 const bcrypt = require("bcryptjs");
-const UserSkill=require('../models/usersSkill');
+const UserSkill = require('../models/usersSkill');
 module.exports.checkDbForLogin = async (username, password) => {
   try {
-    const condition ={ where: { username } } ;
-    const user = await User.findOne( condition );
+    const condition = { where: { username } };
+    const user = await User.findOne(condition);
     if (!user) {
       throw "نام کاربری یا رمز عبور اشتباه میباشد ";
     }
@@ -29,7 +31,14 @@ module.exports.getUser = async (username = null) => {
         "about_me",
       ],
     };
-    const condition = username ? { where: { username } } : {};
+    const condition = username ? {
+      where: {
+        username:
+        {
+          [Op.like]: `%${username}%`
+        }
+      }
+    } : {};
     const result = await User.findAll({ ...condition, ...select });
     // let users=JSON.stringify(result)
     return result;
@@ -38,7 +47,7 @@ module.exports.getUser = async (username = null) => {
   }
 };
 
-module.exports.getUserWithSkill = async (username = null,skill=null) => {
+module.exports.getUserWithSkill = async (username = null, skill = null) => {
   try {
     const select = {
       attributes: [
@@ -50,17 +59,24 @@ module.exports.getUserWithSkill = async (username = null,skill=null) => {
         "about_me",
       ],
     };
-    const condition = username ? { where: { username } } : {};
-    const skillCondition=skill ? { where: { skill } } : {};
-    
+    const condition = username ? {
+      where: {
+        username:
+        {
+          [Op.like]: `%${username}%`
+        }
+      }
+    } : {};
+    const skillCondition = skill ? { where: { skill } } : {};
+
     const result = await User.findAll({
       include: {
-        model: UserSkill,      
-        ...skillCondition  
+        model: UserSkill,
+        ...skillCondition
       },
       ...condition,
-       ...select 
-    
+      ...select
+
     });
     // let users=JSON.stringify(result)
     return result;
@@ -151,4 +167,4 @@ module.exports.updatePassword = async (username, password) => {
   }
 };
 
-module.exports.getUsers = async () => {};
+module.exports.getUsers = async () => { };

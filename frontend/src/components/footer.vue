@@ -74,8 +74,10 @@ export default {
 }
 
 .footer {
+    position: relative;
     background-color: #f8f9fa;
     border-top: 1px solid #e7e7e7;
+    z-index: 2 !important;
 }
 
 .footer h5 {

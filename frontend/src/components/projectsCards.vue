@@ -78,7 +78,7 @@ export default {
                 project.title.toLowerCase().includes(normalizedQuery) ||
                 project.description.toLowerCase().includes(normalizedQuery)
             );
-       
+       console.log('in computed')
        
             return filteredProjects.slice(start, end);
         },

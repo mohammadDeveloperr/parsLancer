@@ -108,7 +108,7 @@ export default {
         await this.showMsgBoxTwo()
         
       } catch (error) {
-        console.log('error is')
+        console.log('user skill error is')
         console.log(error)
         if (error.response.data.message) {
           console.log(typeof error.response.data.message)

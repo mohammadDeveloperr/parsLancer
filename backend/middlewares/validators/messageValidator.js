@@ -15,7 +15,7 @@ const messageValidator = async (req, res, next) => {
         let method = req.method
         let schema = ""
         let validate;
-        let valid;
+        let valid=true;
         if (url == '/message/' && (method == "POST" || method == "PUT")) {
             schema = schemas.addMessageSchema
             console.log(req.query)

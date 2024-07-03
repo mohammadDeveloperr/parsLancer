@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <navbar></navbar>
-    <router-view></router-view>
+    <navbar ></navbar>
+    <router-view @login="login($event)"></router-view>
     <Footer />
   </div>
 </template>
@@ -14,6 +14,8 @@ export default {
   components: {
     Footer,
     navbar,
+  },
+  methods:{
   }
 }
 </script>

@@ -31,9 +31,13 @@
                 </b-card>
 
                 <!-- Edit Profile Button -->
+                <b-button variant="primary" @click="editPassword" class="mt-3 ml-3">
+                    <i class="fas fa-user-edit"></i> تغییر رمز عبور
+                </b-button>
                 <b-button variant="primary" @click="editProfile" class="mt-3">
                     <i class="fas fa-user-edit"></i> ویرایش پروفایل
                 </b-button>
+
             </b-container>
         </div>
 
@@ -46,6 +50,7 @@ import { getSession } from '../utils/sessionUtils'
 import Sidebar from './sideBar.vue';
 import Cookies from 'js-cookie';
 import axios from 'axios'
+import EditPassword from './editPassword.vue';
 
 export default {
     name: 'Profile',
@@ -54,7 +59,7 @@ export default {
             user: {},
             token: Cookies.get('token'),
             username: '',
-            skills:[]
+            skills: []
         };
     },
     components: {
@@ -98,7 +103,7 @@ export default {
                 const response = await axios.request(config)
                 console.log("response of userSkill")
                 console.log(response.data.userSkills)
-                this.skills=response.data.userSkills
+                this.skills = response.data.userSkills
             } catch (err) {
                 console.log("error when get user skill data")
                 console.log(err)
@@ -107,6 +112,11 @@ export default {
         editProfile() {
             // Navigate to the edit profile page
             this.$router.push('/edit-profile');
+        },
+
+        editPassword() {
+            // Navigate to the edit profile page
+            this.$router.push('/edit-password');
         }
     },
     created() {
@@ -115,13 +125,18 @@ export default {
     }
 };
 </script>
-
-<style scoped>
-#about_me{
-    color:black !important;
-}
-.profile {
+<style>
+body {
     background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+
+}
+</style>
+<style scoped>
+#about_me {
+    color: black !important;
+}
+
+.profile {
     /* Gradient background */
 
     /* background: linear-gradient(135deg, #3498db, #8e44ad); */

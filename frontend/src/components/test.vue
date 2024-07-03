@@ -1,18 +1,21 @@
 <template>
   <div>
-    <div class="container">
-      <h1 class="my-4">Projects</h1>
-      <div class="row">
-        <div v-for="(project, index) in paginatedProjects" :key="index" class="col-md-4 mb-4">
-          <b-card :title="project.title">
-            <p>{{ project.description }}</p>
-            <b-button variant="primary">View Details</b-button>
+       <!-- Categories Section -->
+       <b-container fluid class="categories-section py-5">
+      <b-row>
+        <b-col class="text-center mb-5">
+          <h2 class="display-4">Job Categories</h2>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col md="4" v-for="category in categories" :key="category.id" class="text-center mb-3">
+          <b-card :bg-variant="category.color" text-variant="white" class="category-card">
+            <b-card-text>{{ category.name }}</b-card-text>
           </b-card>
-        </div>
-      </div>
-      <b-pagination v-model="currentPage" :total-rows="totalProjects" :per-page="perPage" aria-controls="projects"
-        class="my-4"></b-pagination>
-    </div>
+        </b-col>
+      </b-row>
+    </b-container>
+
   </div>
 </template>
 

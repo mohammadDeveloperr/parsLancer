@@ -5,6 +5,10 @@ const suggestionController=require('../controllers/suggestionController');
 const suggestionValidator=require('../middlewares/validators/suggestionValidator')
 
 router.get("/",checkAccess,suggestionValidator,suggestionController.getSuggest);
+
+router.get("/:freelancer_username",checkAccess,suggestionValidator,suggestionController.getSuggestWithProject);
+
+
 router.post("/:projectId",checkAccess,suggestionValidator,suggestionController.addSuggest)
 router.put("/",checkAccess,suggestionValidator,suggestionController.updateSuggest)
 router.patch("/",checkAccess,suggestionController.acceptSuggest)

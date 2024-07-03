@@ -7,8 +7,8 @@
         <b-col class="mt-5">
           <h1 class="display-4 font-weight-bold mt-3">اتصال فریلنسرهای برتر با کارفرمایان پیشرو</h1>
           <p class="lead mt-5 pt-5 pb-4">بهترین استعدادها را برای پروژه خود یا شغل آزاد رویایی خود پیدا کنید.</p>
-          <b-button variant="success" size="lg" class="mr-3 mt-5">استخدام بهترین فریلنسر ها</b-button>
-          <b-button variant="warning" size="lg" class="mt-5">کسب درامد از فریلنسینگ</b-button>
+          <b-button variant="success" size="lg" class="mr-3 mt-5"  @click.prevent="showFreelancerPage()">استخدام بهترین فریلنسر ها</b-button>
+          <b-button variant="warning" size="lg" class="mt-5"  @click.prevent="showProjectPage()">کسب درامد از فریلنسینگ</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -39,22 +39,20 @@
       </b-row>
     </b-container>
 
-    <!-- Categories Section -->
-    <b-container fluid class="categories-section py-5">
+       <!-- Call to Action Section -->
+       <b-container fluid class="cta-section text-white text-center py-5">
       <b-row>
-        <b-col class="text-center mb-5">
-          <h2 class="display-4">Job Categories</h2>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col md="4" v-for="category in categories" :key="category.id" class="text-center mb-3">
-          <b-card :bg-variant="category.color" text-variant="white" class="category-card">
-            <b-card-text>{{ category.name }}</b-card-text>
-          </b-card>
+        <b-col>
+          <h2 class="display-4 font-weight-bold mb-3"> ! امروز به انجمن ما بپیوندید </h2>
+          <p class="lead mb-4">اکنون ثبت نام کنید و با فریلنسرها و کارفرمایان برتر ارتباط برقرار کنید</p>
+          <b-button variant="success" size="lg" class="mr-3" @click.prevent="showRegisterPage()">ثبت نام</b-button>
+          <b-button variant="warning" size="lg" @click.prevent="showAboutUsPage()">بیشتر بدانید</b-button>
         </b-col>
       </b-row>
     </b-container>
 
+
+ 
     
       <!-- Features Section with Cards -->
       <section id="features" class="py-5">
@@ -92,38 +90,6 @@
         </div>
       </section>
 
-        <!-- Call to Action Section -->
-    <b-container fluid class="cta-section text-white text-center py-5">
-      <b-row>
-        <b-col>
-          <h2 class="display-4 font-weight-bold mb-3"> ! امروز به انجمن ما بپیوندید </h2>
-          <p class="lead mb-4">اکنون ثبت نام کنید و با فریلنسرها و کارفرمایان برتر ارتباط برقرار کنید</p>
-          <b-button variant="success" size="lg" class="mr-3">ثبت نام</b-button>
-          <b-button variant="warning" size="lg">بیشتر بدانید</b-button>
-        </b-col>
-      </b-row>
-    </b-container>
-
-    <!-- Testimonials Section -->
-    <b-container fluid class="testimonials py-5 bg-light">
-      <b-row>
-        <b-col class="text-center mb-5">
-          <h2 class="display-4">Testimonials</h2>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col md="4" v-for="testimonial in testimonials" :key="testimonial.id" class="text-center mb-3">
-          <b-card>
-            <b-card-text>
-              <p>"{{ testimonial.quote }}"</p>
-              <b-icon icon="star-fill" font-scale="1.5" v-for="n in testimonial.rating" :key="n"></b-icon>
-              <p class="mt-2">- {{ testimonial.name }}</p>
-            </b-card-text>
-          </b-card>
-        </b-col>
-      </b-row>
-    </b-container>
-
  
   </div>
 </template>
@@ -152,6 +118,23 @@ export default {
       ],
     };
   },
+  methods:{
+    showProjectPage(){
+      this.$router.push('/project');
+    },
+    showFreelancerPage(){
+      this.$router.push('/user');
+
+    },
+    showAboutUsPage(){
+      this.$router.push('/about');
+      
+    },
+    showRegisterPage(){
+      this.$router.push('/register');
+      
+    }
+  }
 };
 </script>
 

@@ -78,18 +78,19 @@ export default {
 <style scoped>
 .sidebar {
   left: 88% !important;
+  background: linear-gradient(135deg, #a6eeee, #fbc2eb);
+
   width: 12%;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  background: linear-gradient(135deg, #a6eeee, #fbc2eb);
   /* Gradient background */
   color: #080808;
   overflow-y: auto;
   /* Allow scrolling if content exceeds height */
   direction: rtl;
-  text-align: right
+  text-align: right;
 }
 
 .sidebar-header {

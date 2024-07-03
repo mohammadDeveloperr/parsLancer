@@ -1,5 +1,6 @@
 const Project = require("../models/projects");
 const ProjectSkill = require('../models/projectSkill');
+const { Op } = require('sequelize');
 
 module.exports.getProject = async (param = null) => {
   try {
@@ -10,16 +11,28 @@ module.exports.getProject = async (param = null) => {
     throw err;
   }
 };
-module.exports.getProjectWithLabels = async (param = null,skill=null) => {
+module.exports.getProjectWithLabels = async (param = null, skill = null) => {
   try {
+    
     if (typeof param == 'object')
       param = Object.keys(param).length > 0 ? param : null
-    const condition = param ? { where: { ...param } } : {};
-    const skillCondition=skill ? { where: { skill } } : {};
+    let condition ;
+    if (param && param.title) {
+      condition = {
+        where: {
+          title: {
+            [Op.like]: `%${param.title}%`
+          }
+        }
+      }
+    }else{
+      condition = param ? { where: { ...param } } : {};
+    }
+    const skillCondition = skill ? { where: { skill } } : {};
     const result = await Project.findAll({
       include: {
-        model: ProjectSkill,      
-        ...skillCondition  
+        model: ProjectSkill,
+        ...skillCondition
       },
       ...condition
 

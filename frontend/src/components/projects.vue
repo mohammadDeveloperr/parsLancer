@@ -1,55 +1,89 @@
-<template>
-    <div id="projectPage">
+<template id='body'>
+    <div id="page">
+        <div id="projectPage">
 
-        <!-- Project List -->
-        <b-container fluid class="project-list my-5">
-            <b-row justify="center">
-                <b-col id="my-col" lg="8" md="10" :per-page="2" :current-page="1">
-                    <b-card v-for="project in filteredProjects" :key="project.id" class="mb-4 project-card">
-                        <b-card-body class="text-right">
-                            <b-card-title>{{ project.title }}</b-card-title>
-                            <b-card-text>{{ project.explain.slice(0, 50) }}</b-card-text>
-                            <div class="d-flex justify-content-between align-items-center mt-3" dir="rtl">
-                                <small class="text-muted mt-2">تاریخ : {{ project.createdAt.slice(0, 10) }}</small>
-                            </div>
+            <b-container class="search-section container  py-4" lg="8" dir="rtl">
+                <div class="text-center" id="d1">
+                    <b-row class="align-items-center mb-3 text-center" justify="center">
+                        <b-col id="my-col" lg="8" md="10">
+                            <b-form-group label="تیتر پروژه" label-for="project-title">
+                                <b-form-input id="project-title" v-model="titleSearch"   placeholder="          جستجو براساس تیتر    "></b-form-input>
+                            </b-form-group>
+                        </b-col>
+                    </b-row>
+                    <b-row class="align-items-center">
+                        <b-col id="my-col" lg="8" md="10">
+                            <b-form-group label="مهارت های مورد نیاز" label-for="skills">
+                                <b-form-tags v-model="skillSearch" id="skills"   placeholder="جستجو بر اساس مهارت ها ">
+                                </b-form-tags>
+                            </b-form-group>
+                        </b-col>
+                    </b-row>
 
-                            <div class="d-flex justify-content-between align-items-center mt-3" dir="rtl">
-                                <div>
-                                    <span class="text-muted mr-2">هزینه:</span>
-                                    <span>{{ project.minPrice }} ریال</span>
+                    <b-row class="align-items-left mt-3">
+                        <b-col id="my-col" lg="8" md="10">
+                            <small><b-button id="search_btn" type="submit" variant="success"
+                                    @click.prevent="searchProjects()" class="mr-3">
+                                    جستجو
+                                </b-button></small>
+                        </b-col>
+                    </b-row>
+                </div>
+
+
+            </b-container>
+
+            <!-- Project List -->
+            <b-container fluid class="project-list my-5">
+                <b-row justify="center">
+                    <b-col id="my-col" lg="8" md="10" :per-page="2" :current-page="1">
+                        <b-card v-for="project in filteredProjects" :key="project.id" class="mb-4 project-card">
+                            <b-card-body class="text-right">
+                                <b-card-title>{{ project.title }}</b-card-title>
+                                <b-card-text>{{ project.explain.slice(0, 50) }}</b-card-text>
+                                <div class="d-flex justify-content-between align-items-center mt-3" dir="rtl">
+                                    <small class="text-muted mt-2">تاریخ : {{ project.createdAt.slice(0, 10) }}</small>
                                 </div>
-                                
-                             
 
-                            </div>
-                            <div dir="rtl" class="mt-4">
-                                <div>
-                                     <strong>مهارت ها :</strong>
-                                <b-badge v-for="skill in project.projectSkills" :key="skill" variant="primary"
-                                    class="mr-1">{{
-                                        skill.skill }}</b-badge>
+                                <div class="d-flex justify-content-between align-items-center mt-3" dir="rtl">
+                                    <div>
+                                        <span class="text-muted mr-2">هزینه:</span>
+                                        <span>{{ project.minPrice }} ریال</span>
+                                    </div>
+
+
+
                                 </div>
-                            
-                            </div>
-                            <br>
-                            <small class="text-muted mt-5 text-dark"> وضعیت پروژه :
-                                <span class="text-success" v-if="project.status == 'pending'">باز </span>
-                                <span class="text-info" v-else-if="project.status == 'doing'">درحال انجام </span>
-                                <span class="text-danger" v-else>بسته</span>
+                                <div dir="rtl" class="mt-4">
+                                    <div>
+                                        <strong>مهارت ها :</strong>
+                                        <b-badge v-for="skill in project.projectSkills" :key="skill" variant="primary"
+                                            class="mr-1">{{
+                                                skill.skill }}</b-badge>
+                                    </div>
 
-                            </small>
-                            <b-button class="mt-5" id="btn-showProject" variant="success" @click="viewProject(project.id)">مشاهده
+                                </div>
+                                <br>
+                                <small class="text-muted mt-5 text-dark"> وضعیت پروژه :
+                                    <span class="text-success" v-if="project.status == 'pending'">باز </span>
+                                    <span class="text-info" v-else-if="project.status == 'doing'">درحال انجام </span>
+                                    <span class="text-danger" v-else>بسته</span>
+
+                                </small>
+                                <b-button class="mt-5" id="btn-showProject" variant="success"
+                                    @click="viewProject(project.id)">مشاهده
                                     پروژه</b-button>
-                                        
-                        </b-card-body>
-                    </b-card>
-                </b-col>
-            </b-row>
-        </b-container>
-        <b-pagination v-model="currentPage" :total-rows="totalProjects" :per-page="perPage"
-            :aria-controls="filteredProjects" class=" pagination my-4"></b-pagination>
 
-        <!-- <pagination len="1" pageSize="1"></pagination> -->
+                            </b-card-body>
+                        </b-card>
+                    </b-col>
+                </b-row>
+            </b-container>
+            <b-pagination v-model="currentPage" :total-rows="totalProjects" :per-page="perPage"
+                :aria-controls="filteredProjects" class=" pagination my-4"></b-pagination>
+
+            <!-- <pagination len="1" pageSize="1"></pagination> -->
+        </div>
     </div>
 </template>
 
@@ -75,6 +109,8 @@ export default {
                     posted: '2 days ago',
                 }
             ],
+            skillSearch:[],
+            titleSearch:''
         };
     },
     computed: {
@@ -116,13 +152,29 @@ export default {
         async fetchProject() {
             try {
 
+                let data={}
+
+                if(this.titleSearch.length >0){
+                    data.title=this.titleSearch
+                }
+
+                if(this.skillSearch.length > 0){
+                    for(let skill of this.skillSearch){
+                        data={...data,skill}
+                    }
+                }
+
+                console.log('this is search ')
+
+                console.log(data)
+
                 const query = this.$router.history.current.query
                 let config = {
                     method: 'GET',
                     maxBodyLength: Infinity,
                     url: 'http://localhost:3000/project',
                     headers: {},
-                    data: query
+                    params:data
                 };
 
                 // axios.request(config)
@@ -142,20 +194,81 @@ export default {
             console.log('in linking')
             this.$router.push(`/project/${id}`);
         },
-        searchProjects() {
-            // Optional: Implement server-side or local filtering logic
-        },
+         searchProjects(){
+            this.fetchProject()
+        }
     },
+
 };
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-#btn-showProject{
-float: left;}
+#search_btn {
+    width: 25%
+}
+
+#d1 {
+    margin-right: 17%;
+    width: 100%;
+}
+
+#projectPage {
+    font-family: 'Roboto', sans-serif;
+}
+
+.search-section {
+    /* background-color: #007bff; */
+    background-color: white;
+    width: 65%;
+    height: 20% !important;
+    /* padding: 20px; */
+    border-radius: 8px;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center !important;
+}
+
+.search-section .b-input-group {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.search-section .search-icon {
+    color: #007bff;
+}
+
+.search-section .b-form-input {
+    border: none;
+    box-shadow: none;
+}
+
+.search-section .b-form-input:focus {
+    box-shadow: none;
+    border-color: #007bff;
+}
+
+#btn-showProject {
+    background-color: #28a745;
+    border: none;
+}
+
+#btn-showProject:hover {
+    background-color: #218838;
+}
 
 .pagination {
-    margin-left: 90vh;
+    justify-content: center;
+}
+
+#btn-showProject {
+    float: left;
+}
+
+.pagination {
+    /* margin-left: 50vh; */
 }
 
 #projectPage {
@@ -224,5 +337,12 @@ float: left;}
 
 .text-muted {
     color: #6c757d;
+}
+</style>
+
+<style>
+body {
+    background-color: #F8F8F8 !important;
+
 }
 </style>

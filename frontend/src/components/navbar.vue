@@ -9,7 +9,7 @@
                     <div class="container" dir="rtl">
                         <router-link class="navbar-brand" to="/" rel="tooltip"
                             title="Designed and Coded by Creative Tim" data-placement="bottom">
-                            parsLancer
+                           <b>پارسلنسر</b> 
                         </router-link>
                         <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                             aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,15 +27,13 @@
                                 </li>
 
                                 <li class="nav-item px-3">
-                                    <a class="nav-link">
-                                        Blocks
-                                    </a>
+                                    <router-link class="nav-link text-dark" to="/about"> درباره ما</router-link>
+
                                 </li>
 
                                 <li class="nav-item px-3">
-                                    <a class="nav-link ">
-                                        Docs
-                                    </a>
+                                    <router-link class="nav-link text-dark" to="/contact"> ارتباط با ما</router-link>
+
                                 </li>
                             </ul>
 
@@ -58,7 +56,7 @@
                                                 <i class="fas fa-user"></i> حساب کاربری
                                             </router-link>
                                         </b-dropdown-item>
-                               
+
 
                                         <b-dropdown-divider></b-dropdown-divider>
                                         <b-dropdown-item @click="logout" class="text-right">
@@ -86,7 +84,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { BootstrapVue, BootstrapVueIcons, BIcon, BIconPersonCircle, fAUserCircle } from 'bootstrap-vue'
 import Cookies from 'js-cookie';
-import { clearSession,getSession } from '../utils/sessionUtils'
+import { clearSession, getSession } from '../utils/sessionUtils'
 
 export default {
 
@@ -110,10 +108,13 @@ export default {
             clearSession(this.token)
             Cookies.remove('token')
             Cookies.remove('username')
+            this.$router.push('/');
+            location.reload("/");
+
         }
     },
-    created(){
-        this.username=getSession(this.token).username
+    created() {
+        this.username = getSession(this.token).username
     }
 }
 </script>

@@ -1,4 +1,5 @@
 const Suggestion = require("../models/suggestion")
+const Project = require("../models/projects")
 
 const {Op}=require("sequelize")
 module.exports.addSuggest = async (suggest) => {
@@ -19,6 +20,25 @@ module.exports.getSuggest = async (property) => {
         throw err;
     }
 };
+module.exports.getSuggestWithProject = async (freelancer_username) => {
+    try {
+        const condition =  {where: freelancer_username } ;
+        // const result = await Suggestion.findAll({ ...condition });
+
+        const result = await Project.findAll({
+            include: {
+              model: Suggestion,
+              ...condition
+            }
+      
+          });
+        return result;
+    } catch (err) {
+        throw err;
+    }
+};
+
+
 
 module.exports.deleteSuggest = async (id) => {
     try {

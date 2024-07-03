@@ -1,10 +1,29 @@
 const Message = require("../models/message");
+const Suggestion = require("../models/suggestion");
 
 
 module.exports.getMessage = async (params = null) => {
     try {
       const condition = params ? { where: { ...params } } : {};
       const result = await Message.findAll({ condition});
+      return result;
+    } catch (err) {
+      throw err;
+    }
+  };
+module.exports.getMessagesWithSuggestId = async (suggestId) => {
+    try {
+      const condition ={ where: { suggestId } }
+   
+      // const result = await Message.findAll({ condition});
+
+      const result = await Suggestion.findAll({
+        include: {
+          model: Message,
+          ...condition
+          
+        },
+      })
       return result;
     } catch (err) {
       throw err;

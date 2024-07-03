@@ -61,8 +61,14 @@ module.exports.register = async (req, res, next) => {
 
 module.exports.getUser = async (req, res, next) => {
   try {
-    const { username } = req.query;
-    const {skill}=req.query
+    let username=req.query.username?req.query.username:null;
+    let skill=req.query.skill?req.query.skill:null;
+    // let skill=null
+    // if(req.query.skill){
+    //   skill=req.query.skill
+    //   delete req.query.skill
+    // }
+    // const {skill}=req.query.skill?req.query:null
     const users = await getUserWithSkill(username,skill);
     res.status(200).json({users});
   } catch (err) {

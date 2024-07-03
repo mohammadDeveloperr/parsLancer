@@ -1,7 +1,38 @@
 <template>
     <div class="freelancers-page py-5">
         <br><br><br><br><br>
-        <b-container dir="rtl">
+        <b-container class="search-section container  py-4" lg="8" dir="rtl">
+            <div class="text-center" id="d1">
+                <b-row class="align-items-center mb-3 text-center" justify="center">
+                    <b-col id="my-col" lg="8" md="10">
+                        <b-form-group label="تیتر پروژه" label-for="project-title">
+                            <b-form-input id="project-title" v-model="usernameSearch"
+                                placeholder="          جستجو براساس نام کاربری    "></b-form-input>
+                        </b-form-group>
+                    </b-col>
+                </b-row>
+                <b-row class="align-items-center">
+                    <b-col id="my-col" lg="8" md="10">
+                        <b-form-group label="مهارت های مورد نیاز" label-for="skills">
+                            <b-form-tags v-model="skillSearch" id="skills" placeholder="جستجو بر اساس مهارت ها ">
+                            </b-form-tags>
+                        </b-form-group>
+                    </b-col>
+                </b-row>
+
+                <b-row class="align-items-left mt-3">
+                    <b-col id="my-col" lg="8" md="10">
+                        <small><b-button id="search_btn" type="submit" variant="success" @click.prevent="searchUsers()"
+                                class="mr-3">
+                                جستجو
+                            </b-button></small>
+                    </b-col>
+                </b-row>
+            </div>
+
+
+        </b-container>
+        <b-container dir="rtl" class="mt-5">
             <b-row>
                 <b-col v-for="freelancer in freelancers" :key="freelancer.id" cols="12" md="6" lg="4" class="mb-4">
                     <b-card class="freelancer-card shadow-sm">
@@ -13,8 +44,8 @@
                                 }}</b-card-title>
                             <b-card-text class="text-right">
                                 <strong>مهارت ها :</strong>
-                                <b-badge v-for="skill in freelancer.userSkills" :key="skill.skill" pill variant="primary"
-                                    class="mr-2 mb-2">{{
+                                <b-badge v-for="skill in freelancer.userSkills" :key="skill.skill" pill
+                                    variant="primary" class="mr-2 mb-2">{{
                                         skill.skill
                                     }}</b-badge>
                                 <!-- {{ freelancer.userSkills.join(', ') }}  -->
@@ -52,7 +83,9 @@ export default {
                     image: 'https://via.placeholder.com/150'
                 },
                 // Add more freelancers as needed
-            ]
+            ],
+            skillSearch:[],
+            usernameSearch:''
         };
     },
     methods: {
@@ -62,13 +95,25 @@ export default {
         },
         async fetchUsers() {
             try {
+                let data = {}
+
+                if (this.usernameSearch.length > 0) {
+                    data.username = this.usernameSearch
+                }
+
+                if (this.skillSearch.length > 0) {
+                    for (let skill of this.skillSearch) {
+                        data = { ...data, skill }
+                    }
+                }
 
                 // const query = this.$router.history.current.query
                 let config = {
                     method: 'GET',
                     maxBodyLength: Infinity,
                     url: 'http://localhost:3000/users',
-                    headers: {}
+                    headers: {},
+                    params:data
                 };
 
                 // axios.request(config)
@@ -82,6 +127,9 @@ export default {
                 this.freelancers = []
             }
 
+        },
+        searchUsers() {
+            this.fetchUsers()
         }
     },
     created() {
@@ -91,6 +139,47 @@ export default {
 </script>
 
 <style scoped>
+#search_btn {
+    width: 25%
+}
+
+#d1 {
+    margin-right: 17%;
+    width: 100%;
+}
+
+.search-section {
+    /* background-color: #007bff; */
+    background-color: white;
+    width: 65%;
+    height: 20% !important;
+    /* padding: 20px; */
+    border-radius: 8px;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center !important;
+}
+
+.search-section .b-input-group {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.search-section .search-icon {
+    color: #007bff;
+}
+
+.search-section .b-form-input {
+    border: none;
+    box-shadow: none;
+}
+
+.search-section .b-form-input:focus {
+    box-shadow: none;
+    border-color: #007bff;
+}
+
 .freelancers-page {
     background-color: #f8f9fa;
 }

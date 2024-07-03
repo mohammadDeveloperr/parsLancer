@@ -5,6 +5,7 @@ const checkAccess=require('../middlewares/checkAccess')
 const messageController=require('../controllers/messasgeController');
 
 router.get("/",checkAccess,messageController.getMessage);
+router.get("/:suggestId",messageController.getMessagesWithSuggestId);
 router.post("/:suggestId",checkAccess,messageValidator,messageController.addMessage)
 router.put("/:id",checkAccess,messageValidator,messageController.updateMessage)
 router.delete("/:id",checkAccess,messageController.deleteMessage)
