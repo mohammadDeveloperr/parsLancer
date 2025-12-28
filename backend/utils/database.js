@@ -11,6 +11,7 @@ const sequelize = new Sequelize(process.env.DBName, process.env.DBUsername, proc
 
 const connectToDb=async () => {
     try {
+        //await sequelize.sync({force:true}); //use this line for first use (initial table in database)
         await sequelize.sync({});
         logger.info("database is connected!")
     } catch (err) {
